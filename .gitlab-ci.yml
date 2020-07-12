@@ -1,0 +1,31 @@
+image: node:12.2.0-alpine
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  image_name: "pi-site"
+  service_name: "pi-site"
+  project_url: "http://gitlab.home/cox5529/pi-site.git"
+  docker_directory: "."
+
+build:
+  stage: build
+  before_script:
+    - npm install -g @angular/cli
+    - npm install
+  script:
+    - ng build
+    - ng build --prod
+
+deploy:
+  stage: deploy
+  script:
+    - which ssh-agent || (apt-get update -y && apt-get install expect openssh-client -y)
+    - eval $(ssh-agent -s)
+    - echo "$deploy_key" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh -o StrictHostKeyChecking=no gitlab@piswarm.home "sh deploy.sh $project_url $image_name $CI_PIPELINE_IID $service_name $docker_directory"
+
