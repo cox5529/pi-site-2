@@ -1,7 +1,5 @@
 image: node:12.2.0-alpine
 stages:
-  - build
-  - test
   - deploy
 
 variables:
@@ -9,15 +7,6 @@ variables:
   service_name: "pi-site"
   project_url: "http://gitlab.home/cox5529/pi-site.git"
   docker_directory: "."
-
-build:
-  stage: build
-  before_script:
-    - npm install -g @angular/cli
-    - npm install
-  script:
-    - ng build
-    - ng build --prod
 
 deploy:
   stage: deploy
