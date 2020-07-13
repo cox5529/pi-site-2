@@ -1,9 +1,12 @@
 FROM node:12.2.0-alpine as build
 
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
+
 WORKDIR /app
 RUN npm install -g @angular/cli
 
-COPY package.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .

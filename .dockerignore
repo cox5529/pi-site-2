@@ -1,4 +1,3 @@
 node_modules
 *.md
 .git
-package-lock.json
