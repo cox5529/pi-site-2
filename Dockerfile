@@ -3,7 +3,7 @@ FROM node:12.2.0-alpine as build
 WORKDIR /app
 RUN npm install -g @angular/cli
 
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm install
 
 COPY . .
