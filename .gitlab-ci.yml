@@ -5,7 +5,7 @@ stages:
 variables:
   image_name: "pi-site"
   service_name: "pi-site"
-  project_url: "https://gitlab.bscox.home/cox5529/pi-site.git"
+  project_url: "https://gitlab.bscox.com/cox5529/pi-site.git"
   docker_directory: "."
 
 deploy:
