@@ -17,4 +17,3 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - ssh -o StrictHostKeyChecking=no gitlab@piswarm.home "sh deploy.sh $project_url $image_name $CI_PIPELINE_IID $service_name $docker_directory"
-
