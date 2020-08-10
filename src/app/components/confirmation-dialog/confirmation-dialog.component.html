@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+  <p>{{ data.prompt }}</p>
+  <button mat-stroked-button color="accent" [mat-dialog-close]="false">
+    {{ data.falseButton }}
+  </button>
+  <button mat-flat-button color="warn" [mat-dialog-close]="true">
+    {{ data.trueButton }}
+  </button>
+</div>

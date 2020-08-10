@@ -26,11 +26,17 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInviteComponent } from './components/user/user-invite/user-invite.component';
+import { ScreenListComponent } from './components/screen/screen-list/screen-list.component';
+import { ScreenEditComponent } from './components/screen/screen-edit/screen-edit.component';
+import { ScreenCreateComponent } from './components/screen/screen-create/screen-create.component';
+import { ScreenDetailsComponent } from './components/screen/screen-details/screen-details.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,11 @@ import { UserInviteComponent } from './components/user/user-invite/user-invite.c
     UserDetailsComponent,
     UserEditComponent,
     UserInviteComponent,
+    ScreenListComponent,
+    ScreenEditComponent,
+    ScreenCreateComponent,
+    ScreenDetailsComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +78,8 @@ import { UserInviteComponent } from './components/user/user-invite/user-invite.c
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-title>{{data.name}}</mat-card-title>
+  <mat-card-content>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <a
+      [routerLink]="['/screen/edit']"
+      [queryParams]="{ id: data.id }"
+      mat-raised-button
+      color="primary"
+    >
+      Edit screen
+    </a>
+    <a [routerLink]="['/screen']" mat-flat-button color="link">
+      Back
+    </a>
+  </mat-card-actions>
+</mat-card>

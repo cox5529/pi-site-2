@@ -1,25 +1,12 @@
 <form [formGroup]="form">
   <mat-card *ngIf="data">
-    <mat-card-title>User edit</mat-card-title>
+    <mat-card-title>Screen edit</mat-card-title>
     <mat-card-content>
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" />
-      </mat-form-field>
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input matInput formControlName="name" type="text" required />
         <mat-error *ngIf="form.get('name').hasError('required')">
           The name field is required.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Roles</mat-label>
-        <mat-select multiple formControlName="roles" required>
-          <mat-option *ngFor="let role of roleOptions" [value]="role">{{role}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('roles').hasError('required')">
-          The roles field is required.
         </mat-error>
       </mat-form-field>
     </mat-card-content>
@@ -28,9 +15,9 @@
         Save changes
       </button>
       <button (click)="onDelete()" mat-raised-button color="warn">
-        Delete user
+        Delete screen
       </button>
-      <a [routerLink]="['/users']" mat-flat-button color="link">
+      <a [routerLink]="['/screen']" mat-flat-button color="link">
         Cancel
       </a>
     </mat-card-actions>

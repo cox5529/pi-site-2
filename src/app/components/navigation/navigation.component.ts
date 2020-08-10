@@ -22,6 +22,11 @@ export class NavigationComponent implements OnInit {
       path: '/users',
       text: 'Users',
       role: Roles[Roles.Administrator]
+    },
+    {
+      path: '/screen',
+      text: 'Screens',
+      role: Roles[Roles.Screen]
     }
   ];
 

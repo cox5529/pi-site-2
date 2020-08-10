@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+  <mat-card>
+    <mat-card-title>Create screen</mat-card-title>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" required />
+        <mat-error *ngIf="form.get('name').hasError('required')">
+          The name field is required.
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="onSubmit()" mat-raised-button color="primary">
+        Create
+      </button>
+      <a [routerLink]="['/screens']" mat-flat-button color="link">
+        Cancel
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</form>
