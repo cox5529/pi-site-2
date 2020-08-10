@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { HttpService } from "./http.service";
+import { Injectable } from '@angular/core';
+import { HttpService } from './http.service';
 import { HttpResponse } from '@angular/common/http';
 import { LoginRequest } from '../models/requests/login-request';
 import { LoginResponse } from '../models/responses/login-response';
@@ -9,7 +9,7 @@ import { Jwt } from '../models/jwt';
 import * as jwtDecode from 'jwt-decode';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthenticationService {
   constructor(private httpService: HttpService) {}
@@ -32,17 +32,30 @@ export class AuthenticationService {
 
     const token: Jwt = jwtDecode(this.httpService.token);
     const roleName = token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    return roles.indexOf(roleName) >= 0;
+    if (typeof roleName === 'string') {
+      return roles.indexOf(roleName as string) >= 0;
+    } else {
+      for (const role of roleName as string[]) {
+        if (roles.includes(role)) {
+          return true;
+        }
+      }
+
+      return false;
+    }
   }
 
-  getUserRole(): string | null {
+  getUserRoles(): string[] | null {
     if (!this.isAuthenticated()) {
       return null;
     }
 
     const token: Jwt = jwtDecode(this.httpService.token);
     const roleName = token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    return roleName;
+    if (typeof roleName === 'string') {
+      return [ roleName ] as string[];
+    }
+    return roleName as string[];
   }
 
   getUserEmail(): string | null {
@@ -54,7 +67,7 @@ export class AuthenticationService {
     return token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
   }
 
-  async login(request: LoginRequest) : Promise<HttpResponse<LoginResponse>> {
+  async login(request: LoginRequest): Promise<HttpResponse<LoginResponse>> {
     const response = await this.httpService.postAsJson<LoginResponse>('/api/auth/login', request, false);
     if (response.ok) {
       this.httpService.login(response.body.token);

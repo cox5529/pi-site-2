@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://home.bscox.com:8081'
+  apiUrl: 'https://localhost:5001'
 };

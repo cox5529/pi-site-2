@@ -1,19 +1,20 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   FormControl,
   Validators,
-} from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
+} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoginRequest } from 'src/app/models/requests/login-request';
 import { Router } from '@angular/router';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.sass"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
@@ -22,14 +23,17 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private httpService: HttpService
   ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: new FormControl('', Validators.email),
-      password: new FormControl(),
+      password: new FormControl(''),
     });
+
+    this.httpService.logout();
   }
 
   async onSubmit(): Promise<void> {
@@ -40,11 +44,11 @@ export class LoginComponent implements OnInit {
     const request = new LoginRequest();
     request.email = this.form.get('email').value;
     request.password = this.form.get('password').value;
-    
-    var response = await this.authService.login(request);
+
+    const response = await this.authService.login(request);
     if (response.ok) {
       await this.router.navigateByUrl('/');
-    } else if (response.status == 401) {
+    } else if (response.status === 401) {
       this.snackBar.open('Incorrect username or password', 'Dismiss');
     } else {
       this.snackBar.open('Something went wrong. Please try again later.', 'Dismiss');

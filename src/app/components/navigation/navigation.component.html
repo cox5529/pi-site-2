@@ -1,28 +1,58 @@
 <div class="site-container">
   <nav mat-tab-nav-bar backgroundColor="primary">
-    <button fxHide="true" fxShow.lt-md="true" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="isOpen = !isOpen">
+    <button
+      fxHide="true"
+      fxShow.lt-md="true"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="isOpen = !isOpen"
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <span class="site-title">Brandon's Website</span>
-    <a mat-tab-link *ngFor="let link of links"
+    <a
+      mat-tab-link
+      *ngFor="let link of links"
       fxShow="true"
       fxHide.lt-md="true"
-      [routerLink]="[ link.path ]"
-      [active]="route.startsWith(link.path)"> {{link.text}} </a>
+      [routerLink]="[link.path]"
+      [active]="route.startsWith(link.path)"
+      [hidden]="!roles.includes(link.role)"
+    >
+      {{ link.text }}
+    </a>
     <span class="spacer"></span>
-    <span class="email" *ngIf="isAuthenticated" fxHide="true" fxShow.lg="true">{{ email }}</span>
-    <a class="non-tab-button" [routerLink]="['/auth/login']" mat-flat-button color="primary">
-      {{ isAuthenticated ? 'Logout' : 'Login' }}
+    <span
+      class="email"
+      *ngIf="isAuthenticated"
+      fxHide="true"
+      fxShow.lg="true"
+      >{{ email }}</span
+    >
+    <a
+      class="non-tab-button"
+      [routerLink]="['/auth/login']"
+      mat-flat-button
+      color="primary"
+    >
+      {{ isAuthenticated ? "Logout" : "Login" }}
     </a>
   </nav>
   <mat-sidenav-container>
     <mat-sidenav mode="side" [opened]="isOpen">
       <mat-nav-list id="sidebar">
-        <a mat-list-item *ngFor="let link of links" [routerLink]="[link.path]" (click)="isOpen = false">
-            {{ link.text }}
+        <a
+          mat-list-item
+          *ngFor="let link of links"
+          [routerLink]="[link.path]"
+          (click)="isOpen = false"
+          [hidden]="!roles.includes(link.role)"
+        >
+          {{ link.text }}
         </a>
       </mat-nav-list>
-    </mat-sidenav> 
+    </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
