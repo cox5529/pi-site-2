@@ -1,0 +1,22 @@
+@import '~@angular/material/theming'
+$config: mat-get-color-config()
+// Extract the palettes you need from the theme definition.
+$primary: map-get($config, primary)
+$accent: map-get($config, accent)
+
+.spacer
+  flex-grow: 1
+
+mat-sidenav 
+  min-width: 250px
+
+.site-container
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+mat-sidenav-container
+  flex-grow: 1
+
+mat-sidenav-content
+  min-height: 100%
