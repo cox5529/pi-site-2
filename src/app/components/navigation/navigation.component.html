@@ -1,22 +1,27 @@
 <div class="site-container">
-  <nav mat-tab-nav-bar background-color="primary">
-    <button fxShow="true" fxHide.gt-md="true" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="isOpen = !isOpen">
+  <nav mat-tab-nav-bar backgroundColor="primary">
+    <button fxHide="true" fxShow.lt-md="true" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="isOpen = !isOpen">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Brandon's Website</span>
+    <span class="site-title">Brandon's Website</span>
     <a mat-tab-link *ngFor="let link of links"
+      fxShow="true"
+      fxHide.lt-md="true"
       [routerLink]="[ link.path ]"
-      (click)="activeLink = link.path"
-      [active]="activeLink == link.path"> {{link.text}} </a>
+      [active]="route.startsWith(link.path)"> {{link.text}} </a>
     <span class="spacer"></span>
-    <span class="email" *ngIf="isAuthenticated" fxShow="true" fxHide.lt-lg="true">{{ email }}</span>
-    <a [routerLink]="['/auth/login']" mat-flat-button color="primary">
+    <span class="email" *ngIf="isAuthenticated" fxHide="true" fxShow.lg="true">{{ email }}</span>
+    <a class="non-tab-button" [routerLink]="['/auth/login']" mat-flat-button color="primary">
       {{ isAuthenticated ? 'Logout' : 'Login' }}
     </a>
   </nav>
   <mat-sidenav-container>
     <mat-sidenav mode="side" [opened]="isOpen">
-      text
+      <mat-nav-list id="sidebar">
+        <a mat-list-item *ngFor="let link of links" [routerLink]="[link.path]" (click)="isOpen = false">
+            {{ link.text }}
+        </a>
+      </mat-nav-list>
     </mat-sidenav> 
     <mat-sidenav-content>
       <router-outlet></router-outlet>

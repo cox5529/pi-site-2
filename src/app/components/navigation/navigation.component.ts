@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "src/app/services/authentication.service";
 import { HttpService } from "src/app/services/http.service";
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: "app-navigation",
@@ -12,17 +13,15 @@ export class NavigationComponent implements OnInit {
   email = '';
   activeLink = '';
   isOpen = false;
+  route = '';
 
   links: Link[] = [
-    {
-      path: '/auth/login',
-      text: 'Login'
-    }
   ];
 
   constructor(
     private httpService: HttpService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +30,14 @@ export class NavigationComponent implements OnInit {
     this.httpService.onAuthenticateChange.subscribe((x) => {
       this.updateAuthentication(x);
     });
+
+    this.route = this.router.url;
+
+    this.router.events.subscribe(x => {
+      if (x instanceof NavigationEnd) {
+        this.route = x.url;
+      }
+    })
   }
 
   private updateAuthentication(isAuthenticated: boolean): void {
