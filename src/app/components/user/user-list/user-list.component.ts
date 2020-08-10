@@ -60,7 +60,6 @@ export class UserListComponent implements OnInit {
     } as ODataQuery;
 
     const result = await this.userService.getList(request);
-    console.log(result);
     if (result.ok) {
       this.users = result.value;
       this.count = result['@odata.count'];

@@ -25,6 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
@@ -65,7 +66,8 @@ import { UserInviteComponent } from './components/user/user-invite/user-invite.c
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

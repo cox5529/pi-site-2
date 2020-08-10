@@ -1,1 +1,47 @@
-<p>user-details works!</p>
+<mat-card *ngIf="data">
+  <mat-card-title>User details</mat-card-title>
+  <mat-card-content>
+    <table>
+      <tbody>
+        <tr>
+          <td>ID</td>
+          <td>{{ data.id }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{ data.email }}</td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>{{ data.name }}</td>
+        </tr>
+        <tr>
+          <td>Email confirmed</td>
+          <td>{{ data.emailConfirmed ? "Yes" : "No" }}</td>
+        </tr>
+        <tr>
+          <td>Locked out</td>
+          <td>{{ data.isLockedOut ? "Yes" : "No" }}</td>
+        </tr>
+        <tr>
+          <td>Roles</td>
+          <td>{{ roles }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <a
+      [routerLink]="['/users/edit']"
+      [queryParams]="{ id: data.id }"
+      mat-raised-button
+      color="primary"
+    >
+      Edit user
+    </a>
+    <a [routerLink]="['/users']" mat-flat-button color="link">
+      Back
+    </a>
+  </mat-card-actions>
+</mat-card>
+<mat-spinner *ngIf="!data"></mat-spinner>

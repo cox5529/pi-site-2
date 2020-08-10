@@ -7,5 +7,5 @@ export class UserDto implements BaseDto {
   name: string;
   emailConfirmed: boolean;
   isLockedOut: boolean;
-  roles: Roles[];
+  roles: string[];
 }

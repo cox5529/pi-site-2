@@ -58,5 +58,21 @@ export abstract class CrudService<TDto extends BaseDto> {
     } as ODataResponse<TDto>;
   }
 
+  async get(id: string): Promise<HttpResponse<ODataResponse<TDto>>> {
+    return await this.httpService.get(`${this.basePath}(${id})`, true, new HttpParams());
+  }
+
+  async delete(id: string): Promise<HttpResponse<TDto>> {
+    return await this.httpService.delete(`${this.basePath}(${id})`, true);
+  }
+
+  async create(request: TDto): Promise<HttpResponse<TDto>> {
+    return await this.httpService.postAsJson(`${this.basePath}`, request, true);
+  }
+
+  async edit(request: TDto): Promise<HttpResponse<any>> {
+    return await this.httpService.putAsJson(`${this.basePath}(${request.id})`, request, true);
+  }
+
   abstract parseParameters(request: ODataQuery);
 }

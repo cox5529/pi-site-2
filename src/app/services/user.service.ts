@@ -3,9 +3,7 @@ import { CrudService } from './crud.service';
 import { UserDto } from '../models/dtos/user-dto';
 import { HttpService } from './http.service';
 import { ODataQuery } from '../models/odata-query';
-import { HttpResponse, HttpParams } from '@angular/common/http';
-import { ODataResponse } from '../models/responses/odata-response';
-import { UserListResponse } from '../models/responses/user-list-response';
+import { Roles } from '../models/enums/roles';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +28,9 @@ export class UserService extends CrudService<UserDto> {
 
       request.orderBy = `${request.sortColumn} ${request.sortDirection}`;
     }
+  }
+
+  getRoleOptions(): string[] {
+    return Object.keys(Roles).filter(key => !isNaN(Number(Roles[key])));
   }
 }
