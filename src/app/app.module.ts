@@ -37,6 +37,10 @@ import { ScreenEditComponent } from './components/screen/screen-edit/screen-edit
 import { ScreenCreateComponent } from './components/screen/screen-create/screen-create.component';
 import { ScreenDetailsComponent } from './components/screen/screen-details/screen-details.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { ScreenPreviewComponent } from './components/screen/screen-preview/screen-preview.component';
+import { ClockTileComponent } from './components/screen/tile/clock-tile/clock-tile.component';
+import { TileCreateComponent } from './components/screen/tile/tile-create/tile-create.component';
+import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     ScreenCreateComponent,
     ScreenDetailsComponent,
     ConfirmationDialogComponent,
+    ScreenPreviewComponent,
+    ClockTileComponent,
+    TileCreateComponent,
+    TileEditComponent,
   ],
   imports: [
     BrowserModule,

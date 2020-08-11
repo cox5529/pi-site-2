@@ -1,5 +1,5 @@
-<form [formGroup]="form">
-  <mat-card *ngIf="data">
+<form [formGroup]="form" *ngIf="data">
+  <mat-card>
     <mat-card-title>Screen edit</mat-card-title>
     <mat-card-content>
       <mat-form-field>
@@ -9,6 +9,21 @@
           The name field is required.
         </mat-error>
       </mat-form-field>
+
+      <h2>
+        Tiles
+      </h2>
+
+      <mat-action-list>
+        <button
+          *ngFor="let tile of data.tiles"
+          [routerLink]="['/screen/tile/edit']"
+          [queryParams]="{ id: tile.id }"
+          mat-list-item
+        >
+          {{ tile.location }} - {{ tile.type }}
+        </button>
+      </mat-action-list>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="onSubmit()" mat-raised-button color="primary">
@@ -17,10 +32,18 @@
       <button (click)="onDelete()" mat-raised-button color="warn">
         Delete screen
       </button>
+      <a
+        [routerLink]="['/screen/tile/create']"
+        [queryParams]="{ screenId: this.data.id }"
+        mat-raised-button
+        color="accent"
+      >
+        <mat-icon>add</mat-icon> Create tile
+      </a>
       <a [routerLink]="['/screen']" mat-flat-button color="link">
         Cancel
       </a>
     </mat-card-actions>
   </mat-card>
-  <mat-spinner *ngIf="!data"></mat-spinner>
 </form>
+<mat-spinner *ngIf="!data"></mat-spinner>

@@ -22,9 +22,7 @@ export class ScreenCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: new FormControl(),
-      name: new FormControl(),
-      roles: new FormControl(),
+      name: new FormControl()
     });
   }
 

@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
-import { ScreenDto } from 'src/app/models/dtos/screen-dto';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { ScreenService } from 'src/app/services/screen.service';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
+import { TileService } from 'src/app/services/tile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { TileDto } from 'src/app/models/dtos/tile-dto';
+import { type } from 'os';
+import { ClockConfig } from 'src/app/models/tile-configs/clock-config';
+import { TileTypes } from 'src/app/models/enums/tile-types';
 
 @Component({
-  selector: 'app-screen-edit',
-  templateUrl: './screen-edit.component.html',
-  styleUrls: ['./screen-edit.component.sass'],
+  selector: 'app-tile-edit',
+  templateUrl: './tile-edit.component.html',
+  styleUrls: ['./tile-edit.component.sass'],
 })
-export class ScreenEditComponent implements OnInit {
+export class TileEditComponent implements OnInit {
+  data: TileDto;
+  form: FormGroup;
+
+  types: string[] = [];
+  locations: string[] = [];
+
   constructor(
-    private screenService: ScreenService,
+    private tileService: TileService,
     private route: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
@@ -22,13 +31,14 @@ export class ScreenEditComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  data: ScreenDto;
-  form: FormGroup;
-
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: new FormControl(),
+      type: new FormControl({ value: '', disabled: true }),
+      location: new FormControl(),
     });
+
+    this.locations = this.tileService.getLocations();
+    this.types = this.tileService.getTypes();
 
     this.route.queryParams.subscribe(async (params) => {
       if (!params || !params.id) {
@@ -37,7 +47,7 @@ export class ScreenEditComponent implements OnInit {
       }
 
       const id = params.id;
-      const response = await this.screenService.get(id);
+      const response = await this.tileService.get(id);
       if (
         response.ok &&
         response.body &&
@@ -46,7 +56,8 @@ export class ScreenEditComponent implements OnInit {
       ) {
         this.data = response.body.value[0];
 
-        this.form.get('name').setValue(this.data.name);
+        this.form.get('type').setValue(this.data.type);
+        this.form.get('location').setValue(this.data.location);
       } else if (response.status === 404) {
         await this.router.navigateByUrl('/screen');
       } else {
@@ -63,11 +74,11 @@ export class ScreenEditComponent implements OnInit {
       return;
     }
 
-    this.data.name = this.form.get('name').value;
+    this.data.location = this.form.get('location').value;
 
-    const result = await this.screenService.edit(this.data);
+    const result = await this.tileService.edit(this.data);
     if (result.ok) {
-      await this.router.navigateByUrl('/screen');
+      await this.router.navigateByUrl(`/screen/edit?id=${this.data.screenId}`);
     } else {
       this.snackbar.open(
         'Something went wrong. Please try again later.',
@@ -80,7 +91,7 @@ export class ScreenEditComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
       data: {
-        prompt: `Are you sure you want to delete '${this.data.name}'?`,
+        prompt: `Are you sure you want to delete '${this.data.location} - ${this.data.type}'?`,
         trueButton: 'Yes',
         falseButton: 'No',
       },
@@ -88,9 +99,11 @@ export class ScreenEditComponent implements OnInit {
 
     const result = await dialogRef.afterClosed().toPromise();
     if (result) {
-      const response = await this.screenService.delete(this.data.id);
+      const response = await this.tileService.delete(this.data.id);
       if (response.ok) {
-        this.router.navigate(['/screen']);
+        await this.router.navigateByUrl(
+          `/screen/edit?id=${this.data.screenId}`
+        );
       } else {
         this.snackbar.open(
           'Something went wrong when deleting the kiosk. Please try again later.',

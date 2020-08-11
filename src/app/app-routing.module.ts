@@ -14,6 +14,8 @@ import { ScreenListComponent } from './components/screen/screen-list/screen-list
 import { ScreenDetailsComponent } from './components/screen/screen-details/screen-details.component';
 import { ScreenEditComponent } from './components/screen/screen-edit/screen-edit.component';
 import { ScreenCreateComponent } from './components/screen/screen-create/screen-create.component';
+import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.component';
+import { TileCreateComponent } from './components/screen/tile/tile-create/tile-create.component';
 
 
 const routes: Routes = [
@@ -28,7 +30,9 @@ const routes: Routes = [
   { path: 'screen', component: ScreenListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/details', component: ScreenDetailsComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/edit', component: ScreenEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
-  { path: 'screen/create', component: ScreenCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } }
+  { path: 'screen/create', component: ScreenCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
+  { path: 'screen/tile/edit', component: TileEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
+  { path: 'screen/tile/create', component: TileCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } }
 ];
 
 @NgModule({
