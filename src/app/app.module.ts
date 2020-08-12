@@ -27,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
@@ -41,6 +42,8 @@ import { ScreenPreviewComponent } from './components/screen/screen-preview/scree
 import { ClockTileComponent } from './components/screen/tile/clock-tile/clock-tile.component';
 import { TileCreateComponent } from './components/screen/tile/tile-create/tile-create.component';
 import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.component';
+import { ClockTileSettingsComponent } from './components/screen/tile/clock-tile/settings/clock-tile-settings.component';
+import { TileContainerComponent } from './components/screen/tile/tile-container/tile-container.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,8 @@ import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.
     ClockTileComponent,
     TileCreateComponent,
     TileEditComponent,
+    ClockTileSettingsComponent,
+    TileContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,8 @@ import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.
     MatProgressSpinnerModule,
     MatTableModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

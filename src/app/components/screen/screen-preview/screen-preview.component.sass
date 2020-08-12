@@ -1,0 +1,78 @@
+.screen
+  display: grid
+  width: 100vw
+  height: 100vh
+  grid-template-rows: 1fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr
+  row-gap: 16px
+  column-gap: 16px
+
+  &.preview
+    width: 100%
+    min-height: 500px
+
+  .upper-third
+    grid-row: 1
+    grid-column-start: 1
+    grid-column-end: 4
+
+  .middle-third
+    grid-row: 2
+    grid-column-start: 1
+    grid-column-end: 4
+
+  .lower-third
+    grid-row: 3
+    grid-column-start: 1
+    grid-column-end: 4
+
+  .left-column
+    grid-column: 1
+    grid-row-start: 1
+    grid-row-end: 4
+
+  .middle-column
+    grid-column: 2
+    grid-row-start: 1
+    grid-row-end: 4
+
+  .right-column
+    grid-column: 3
+    grid-row-start: 1
+    grid-row-end: 4
+
+  .top-left
+    grid-row: 1
+    grid-column: 1
+
+  .top-middle
+    grid-row: 1
+    grid-column: 2
+
+  .top-right
+    grid-row: 1
+    grid-column: 3
+
+  .middle-left
+    grid-row: 2
+    grid-column: 1
+
+  .middle
+    grid-row: 2
+    grid-column: 2
+
+  .middle-right
+    grid-row: 2
+    grid-column: 3
+
+  .bottom-left
+    grid-row: 3
+    grid-column: 1
+
+  .bottom-middle
+    grid-row: 3
+    grid-column: 2
+
+  .bottom-right
+    grid-row: 3
+    grid-column: 3

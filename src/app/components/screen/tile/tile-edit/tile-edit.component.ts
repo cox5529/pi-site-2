@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TileDto } from 'src/app/models/dtos/tile-dto';
+import { TileTypes } from 'src/app/models/enums/tile-types';
 
 @Component({
   selector: 'app-tile-edit',
@@ -15,6 +16,8 @@ import { TileDto } from 'src/app/models/dtos/tile-dto';
 export class TileEditComponent implements OnInit {
   data: TileDto;
   form: FormGroup;
+
+  type: string;
 
   types: string[] = [];
   locations: string[] = [];
@@ -32,6 +35,7 @@ export class TileEditComponent implements OnInit {
     this.form = this.formBuilder.group({
       type: new FormControl({ value: '', disabled: true }),
       location: new FormControl(),
+      configurationJson: new FormControl()
     });
 
     this.locations = this.tileService.getLocations();
@@ -53,8 +57,12 @@ export class TileEditComponent implements OnInit {
       ) {
         this.data = response.body.value[0];
 
+        this.type = TileTypes[TileTypes[this.data.type]];
+        console.log(this.type);
+
         this.form.get('type').setValue(this.data.type);
         this.form.get('location').setValue(this.data.location);
+        this.form.get('configurationJson').setValue(this.data.configurationJson);
       } else if (response.status === 404) {
         await this.router.navigateByUrl('/screen');
       } else {
@@ -72,6 +80,7 @@ export class TileEditComponent implements OnInit {
     }
 
     this.data.location = this.form.get('location').value;
+    this.data.configurationJson = this.form.get('configurationJson').value;
 
     const result = await this.tileService.edit(this.data);
     if (result.ok) {

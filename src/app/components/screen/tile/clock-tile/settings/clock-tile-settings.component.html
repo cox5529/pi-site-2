@@ -1,0 +1,12 @@
+<mat-slide-toggle [formControl]="showDate">Show date</mat-slide-toggle>
+<mat-form-field *ngIf="showDate.value">
+  <mat-label>Date format string</mat-label>
+  <input matInput [formControl]="dateFormat" type="text" required />
+  <mat-error *ngIf="dateFormat.hasError('required')">
+    The date format string field is required.
+  </mat-error>
+</mat-form-field>
+<div *ngIf="showDate.value">
+  For more information about date format strings, see <a href="https://docs.angularjs.org/api/ng/filter/date">the documentation.</a>
+</div>
+<mat-slide-toggle [formControl]="showSeconds">Show seconds</mat-slide-toggle>

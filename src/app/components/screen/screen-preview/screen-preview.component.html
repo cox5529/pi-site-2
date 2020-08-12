@@ -1,1 +1,17 @@
-<p>screen-preview works!</p>
+<div class="screen" [class.preview]="isPreview">
+  <app-tile-container class="upper-third" [tile]="getTileByLocation('UpperThird')"></app-tile-container>
+  <app-tile-container class="middle-third" [tile]="getTileByLocation('MiddleThird')"></app-tile-container>
+  <app-tile-container class="lower-third" [tile]="getTileByLocation('LowerThird')"></app-tile-container>
+  <app-tile-container class="left-column" [tile]="getTileByLocation('LeftColumn')"></app-tile-container>
+  <app-tile-container class="middle-column" [tile]="getTileByLocation('MiddleColumn')"></app-tile-container>
+  <app-tile-container class="right-column" [tile]="getTileByLocation('RightColumn')"></app-tile-container>
+  <app-tile-container class="top-left" [tile]="getTileByLocation('TopLeft')"></app-tile-container>
+  <app-tile-container class="top-middle" [tile]="getTileByLocation('TopMiddle')"></app-tile-container>
+  <app-tile-container class="top-right" [tile]="getTileByLocation('TopRight')"></app-tile-container>
+  <app-tile-container class="middle-left" [tile]="getTileByLocation('MiddleLeft')"></app-tile-container>
+  <app-tile-container class="middle" [tile]="getTileByLocation('Middle')"></app-tile-container>
+  <app-tile-container class="middle-right" [tile]="getTileByLocation('MiddleRight')"></app-tile-container>
+  <app-tile-container class="bottom-left" [tile]="getTileByLocation('BottomLeft')"></app-tile-container>
+  <app-tile-container class="bottom-middle" [tile]="getTileByLocation('BottomMiddle')"></app-tile-container>
+  <app-tile-container class="bottom-right" [tile]="getTileByLocation('BottomRight')"></app-tile-container>
+</div>

@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card *ngIf="data">
   <mat-card-title>{{data.name}}</mat-card-title>
   <mat-card-content>
-
+    <app-screen-preview [tiles]="data.tiles"></app-screen-preview>
   </mat-card-content>
   <mat-card-actions>
     <a
@@ -17,3 +17,4 @@
     </a>
   </mat-card-actions>
 </mat-card>
+<mat-spinner *ngIf="!data"></mat-spinner>

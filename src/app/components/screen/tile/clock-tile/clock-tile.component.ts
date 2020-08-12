@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { TileComponent } from '../tile.component';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { ClockConfig } from 'src/app/models/tile-configs/clock-config';
 import { TileDto } from 'src/app/models/dtos/tile-dto';
+import { BaseTile } from '../base-tile';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-clock-tile',
   templateUrl: './clock-tile.component.html',
   styleUrls: ['./clock-tile.component.sass']
 })
-export class ClockTileComponent extends TileComponent implements OnInit {
-  configuration: ClockConfig;
+export class ClockTileComponent extends BaseTile<ClockConfig> {
+  date: Date;
 
-  constructor(data: TileDto) {
+  constructor() {
     super();
-    super.data = data;
-    this.configuration = JSON.parse(data.configurationJson) as ClockConfig;
   }
 
-  ngOnInit(): void {
+  initialize(): void {
+    const sub = timer(0, 1000).subscribe(x => {
+      this.date = new Date();
+    });
+    this.subscriptions.push(sub);
   }
-
 }

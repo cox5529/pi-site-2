@@ -5,7 +5,9 @@
       <mat-form-field>
         <mat-label>Type</mat-label>
         <mat-select formControlName="type" required>
-          <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+          <mat-option *ngFor="let type of types" [value]="type">{{
+            type
+          }}</mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('type').hasError('required')">
           The type field is required.
@@ -14,12 +16,18 @@
       <mat-form-field>
         <mat-label>Location</mat-label>
         <mat-select formControlName="location" required>
-          <mat-option *ngFor="let location of locations" [value]="location">{{location}}</mat-option>
+          <mat-option *ngFor="let location of locations" [value]="location">{{
+            location
+          }}</mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('location').hasError('required')">
           The location field is required.
         </mat-error>
       </mat-form-field>
+      <app-clock-tile-settings
+        *ngIf="type === 'Clock'"
+        formControlName="configurationJson"
+      ></app-clock-tile-settings>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="onSubmit()" mat-raised-button color="primary">
@@ -28,7 +36,12 @@
       <button (click)="onDelete()" mat-raised-button color="warn">
         Delete tile
       </button>
-      <a [routerLink]="['/screen/edit']" [queryParams]="{ id: data.screenId }" mat-flat-button color="link">
+      <a
+        [routerLink]="['/screen/edit']"
+        [queryParams]="{ id: data.screenId }"
+        mat-flat-button
+        color="link"
+      >
         Cancel
       </a>
     </mat-card-actions>
