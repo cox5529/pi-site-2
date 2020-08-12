@@ -6,9 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TileDto } from 'src/app/models/dtos/tile-dto';
-import { type } from 'os';
-import { ClockConfig } from 'src/app/models/tile-configs/clock-config';
-import { TileTypes } from 'src/app/models/enums/tile-types';
 
 @Component({
   selector: 'app-tile-edit',
