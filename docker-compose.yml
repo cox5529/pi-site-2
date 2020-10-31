@@ -5,3 +5,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
+
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.0.0.0/24
