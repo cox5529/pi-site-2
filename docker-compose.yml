@@ -9,10 +9,11 @@ services:
       - type: bind
         source: /etc/certs
         target: /etc/certs
-
+    networks:
+      - default
 networks:
   default:
+    driver: overlay
     ipam:
-      driver: default
       config:
         - subnet: 172.0.1.0/24
