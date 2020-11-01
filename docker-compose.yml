@@ -5,6 +5,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    volumes:
+      - type: bind
+        source: /etc/certs
+        target: /etc/certs
 
 networks:
   default:
