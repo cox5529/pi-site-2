@@ -7,6 +7,7 @@ import { ForgotPasswordRequest } from '../models/requests/forgot-password-reques
 import { ResetPasswordRequest } from '../models/requests/reset-password-request';
 import { Jwt } from '../models/jwt';
 import * as jwtDecode from 'jwt-decode';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -68,7 +69,7 @@ export class AuthenticationService {
   }
 
   async login(request: LoginRequest): Promise<HttpResponse<LoginResponse>> {
-    const response = await this.httpService.postAsJson<LoginResponse>('/api/auth/login', request, false);
+    const response = await this.httpService.postAsJson<LoginResponse>('/api/auth/login', request, false, environment.authServicePort);
     if (response.ok) {
       this.httpService.login(response.body.token);
     }
@@ -81,10 +82,10 @@ export class AuthenticationService {
   }
 
   async forgotPassword(request: ForgotPasswordRequest): Promise<HttpResponse<any>> {
-    return await this.httpService.postAsJson('/api/auth/forgot-password', request, false);
+    return await this.httpService.postAsJson('/api/auth/forgot-password', request, false, environment.authServicePort);
   }
 
   async resetPassword(request: ResetPasswordRequest): Promise<HttpResponse<any>> {
-    return await this.httpService.postAsJson('/api/auth/reset-password', request, false);
+    return await this.httpService.postAsJson('/api/auth/reset-password', request, false, environment.authServicePort);
   }
 }

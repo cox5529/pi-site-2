@@ -30,8 +30,8 @@ export class UserDetailsComponent implements OnInit {
 
       const id = params.id;
       const response = await this.userService.get(id);
-      if (response.ok && response.body && response.body.value && response.body.value.length === 1) {
-        this.data = response.body.value[0];
+      if (response.ok && response.body) {
+        this.data = response.body;
         this.roles = '';
         for (const role of this.data.roles) {
           if (this.roles.length > 0) {

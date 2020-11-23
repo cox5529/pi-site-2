@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ODataQuery } from 'src/app/models/odata-query';
+import { ListQuery } from 'src/app/models/list-query';
 import { Sort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl } from '@angular/forms';
@@ -52,17 +52,16 @@ export class UserListComponent implements OnInit {
 
   async updateData(): Promise<void> {
     const request = {
-      skip: 20 * this.page,
-      top: 20,
+      page: this.page,
       sortDirection: this.sortDirection,
       sortColumn: this.sortColumn,
-      filterInput: this.filter.value,
-    } as ODataQuery;
+      query: this.filter.value,
+    } as ListQuery;
 
     const result = await this.userService.getList(request);
     if (result.ok) {
-      this.users = result.value;
-      this.count = result['@odata.count'];
+      this.users = result.data;
+      this.count = result.count;
     } else {
       this.snackbar.open(
         'Something went wrong. Please try again later.',

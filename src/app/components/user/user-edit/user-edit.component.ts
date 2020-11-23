@@ -45,13 +45,8 @@ export class UserEditComponent implements OnInit {
 
       const id = params.id;
       const response = await this.userService.get(id);
-      if (
-        response.ok &&
-        response.body &&
-        response.body.value &&
-        response.body.value.length === 1
-      ) {
-        this.data = response.body.value[0];
+      if (response.ok && response.body) {
+        this.data = response.body;
 
         this.form.get('email').setValue(this.data.email);
         this.form.get('name').setValue(this.data.name);
@@ -104,7 +99,7 @@ export class UserEditComponent implements OnInit {
       if (response.ok) {
         this.router.navigate(['/users']);
       } else {
-        this.snackbar.open('Something went wrong when deleting the kiosk. Please try again later.', 'Dismiss');
+        this.snackbar.open('Something went wrong when deleting the user. Please try again later.', 'Dismiss');
       }
     }
   }

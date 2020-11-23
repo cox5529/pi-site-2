@@ -38,13 +38,8 @@ export class ScreenEditComponent implements OnInit {
 
       const id = params.id;
       const response = await this.screenService.get(id);
-      if (
-        response.ok &&
-        response.body &&
-        response.body.value &&
-        response.body.value.length === 1
-      ) {
-        this.data = response.body.value[0];
+      if (response.ok && response.body) {
+        this.data = response.body;
 
         this.form.get('name').setValue(this.data.name);
       } else if (response.status === 404) {
@@ -93,7 +88,7 @@ export class ScreenEditComponent implements OnInit {
         this.router.navigate(['/screen']);
       } else {
         this.snackbar.open(
-          'Something went wrong when deleting the kiosk. Please try again later.',
+          'Something went wrong when deleting the screen. Please try again later.',
           'Dismiss'
         );
       }

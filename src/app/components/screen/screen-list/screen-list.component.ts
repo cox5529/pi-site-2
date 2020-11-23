@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
-import { ODataQuery } from 'src/app/models/odata-query';
+import { ListQuery } from 'src/app/models/list-query';
 import { ScreenDto } from 'src/app/models/dtos/screen-dto';
 import { ScreenService } from 'src/app/services/screen.service';
 
@@ -52,17 +52,16 @@ export class ScreenListComponent implements OnInit {
 
   async updateData(): Promise<void> {
     const request = {
-      skip: 20 * this.page,
-      top: 20,
+      page: this.page,
       sortDirection: this.sortDirection,
       sortColumn: this.sortColumn,
-      filterInput: this.filter.value,
-    } as ODataQuery;
+      query: this.filter.value,
+    } as ListQuery;
 
     const result = await this.screenService.getList(request);
     if (result.ok) {
-      this.data = result.value;
-      this.count = result['@odata.count'];
+      this.data = result.data;
+      this.count = result.count;
     } else {
       this.snackbar.open(
         'Something went wrong. Please try again later.',

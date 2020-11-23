@@ -1,78 +1,66 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { BaseDto } from '../models/dtos/base-dto';
-import { ODataQuery } from '../models/odata-query';
+import { ListQuery } from '../models/list-query';
 import { HttpParams, HttpResponse } from '@angular/common/http';
-import { ODataResponse } from '../models/responses/odata-response';
+import { ListResponse } from '../models/responses/list-response';
 
 @Injectable({
   providedIn: 'root',
 })
-export abstract class CrudService<TDto extends BaseDto> {
+export class CrudService<TDto extends BaseDto> {
   protected basePath: string;
+  protected port: string;
 
   constructor(protected httpService: HttpService) {}
 
-  async getList(request?: ODataQuery): Promise<ODataResponse<TDto>> {
-    let params = new HttpParams();
-    params = params.set('$count', 'true');
+  async getList(request?: ListQuery): Promise<ListResponse<TDto>> {
+    let params = new HttpParams()
+      .append('page', `${request.page}`);
 
-    if (request) {
-      this.parseParameters(request);
-      if (request.expand) {
-        params = params.set('$expand', request.expand);
-      }
-
-      if (request.filter) {
-        params = params.set('$filter', request.filter);
-      }
-
-      if (request.orderBy) {
-        params = params.set('$orderBy', request.orderBy);
-      }
-
-      if (request.skip) {
-        params = params.set('$skip', `${request.skip}`);
-      }
-
-      if (request.skip) {
-        params = params.set('$top', `${request.top}`);
-      }
+    if (request.query) {
+      params = params.append('query', request.query);
     }
 
-    const result = await this.httpService.get<ODataResponse<TDto>>(`${this.basePath}`, true, params);
+    if (request.sortColumn) {
+      params = params.append('sortColumn', request.sortColumn)
+        .append('sortDirection', request.sortDirection);
+    }
+
+    const result = await this.httpService.get<ListResponse<TDto>>(`${this.basePath}`, true, params, this.port);
     if (result.ok) {
       return {
         ok: true,
-        statusCode: result.status,
-        '@odata.count': result.body['@odata.count'],
-        value: result.body.value
+        status: result.status,
+        page: result.body.page,
+        totalPages: result.body.totalPages,
+        pageSize: result.body.pageSize,
+        count: result.body.count,
+        data: result.body.data
       };
     }
 
     return {
       ok: false,
-      statusCode: result.status,
-      '@odata.count': 0,
-      value: []
-    } as ODataResponse<TDto>;
+      status: result.status,
+      count: 0,
+      data: []
+    } as ListResponse<TDto>;
   }
 
-  async get(id: string): Promise<HttpResponse<ODataResponse<TDto>>> {
-    return await this.httpService.get(`${this.basePath}(${id})`, true, new HttpParams());
+  async get(id: string): Promise<HttpResponse<TDto>> {
+    return await this.httpService.get(`${this.basePath}/${id}`, true, new HttpParams(), this.port);
   }
 
   async delete(id: string): Promise<HttpResponse<TDto>> {
-    return await this.httpService.delete(`${this.basePath}(${id})`, true);
+    return await this.httpService.delete(`${this.basePath}/${id}`, true, this.port);
   }
 
   async create(request: TDto): Promise<HttpResponse<TDto>> {
-    return await this.httpService.postAsJson(`${this.basePath}`, request, true);
+    return await this.httpService.postAsJson(`${this.basePath}`, request, true, this.port);
   }
 
   async edit(request: TDto): Promise<HttpResponse<any>> {
-    return await this.httpService.putAsJson(`${this.basePath}(${request.id})`, request, true);
+    return await this.httpService.putAsJson(`${this.basePath}/${request.id}`, request, true, this.port);
   }
-
-  abstract parseParameters(request: ODataQuery);
 }

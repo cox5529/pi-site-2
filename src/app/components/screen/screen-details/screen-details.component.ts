@@ -29,8 +29,8 @@ export class ScreenDetailsComponent implements OnInit {
 
       const id = params.id;
       const response = await this.screenService.get(id);
-      if (response.ok && response.body && response.body.value && response.body.value.length === 1) {
-        this.data = response.body.value[0];
+      if (response.ok && response.body) {
+        this.data = response.body;
       } else if (response.status === 404) {
         await this.router.navigateByUrl('/screen');
       } else {

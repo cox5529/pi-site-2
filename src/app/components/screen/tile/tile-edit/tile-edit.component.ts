@@ -49,13 +49,8 @@ export class TileEditComponent implements OnInit {
 
       const id = params.id;
       const response = await this.tileService.get(id);
-      if (
-        response.ok &&
-        response.body &&
-        response.body.value &&
-        response.body.value.length === 1
-      ) {
-        this.data = response.body.value[0];
+      if (response.ok && response.body) {
+        this.data = response.body;
 
         this.type = TileTypes[TileTypes[this.data.type]];
         console.log(this.type);
@@ -112,7 +107,7 @@ export class TileEditComponent implements OnInit {
         );
       } else {
         this.snackbar.open(
-          'Something went wrong when deleting the kiosk. Please try again later.',
+          'Something went wrong when deleting the tile. Please try again later.',
           'Dismiss'
         );
       }

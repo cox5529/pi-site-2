@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CrudService } from './crud.service';
 import { TileDto } from '../models/dtos/tile-dto';
-import { ODataQuery } from '../models/odata-query';
+import { ListQuery } from '../models/list-query';
 import { HttpService } from './http.service';
 import { Locations } from '../models/enums/locations';
 import { TileTypes } from '../models/enums/tile-types';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class TileService extends CrudService<TileDto> {
   constructor(httpService: HttpService) {
     super(httpService);
     super.basePath = '/api/tile';
+    super.port = environment.screenServicePort;
   }
 
   getLocations(): string[] {
@@ -22,9 +24,5 @@ export class TileService extends CrudService<TileDto> {
 
   getTypes(): string[] {
     return Object.keys(TileTypes).filter(key => !isNaN(Number(TileTypes[key])));
-  }
-
-  parseParameters(request: ODataQuery) {
-    throw new Error('Method not implemented.');
   }
 }
