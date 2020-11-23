@@ -1,4 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://home.bscox.com:8081'
+  baseUrl: 'https://pi.bscox.com',
+  authServicePort: '8081',
+  recipeServicePort: '8083'
 };

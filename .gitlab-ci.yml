@@ -3,7 +3,6 @@ stages:
   - deploy
 
 variables:
-  image_name: "pi-site"
   service_name: "pi-site"
   project_url: "https://gitlab.bscox.com/cox5529/pi-site.git"
   docker_directory: "."
@@ -16,4 +15,4 @@ deploy:
     - echo "$deploy_key" | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh -o StrictHostKeyChecking=no gitlab@10.0.0.33 "sh deploy.sh $project_url $image_name frontend $service_name $docker_directory"
+    - ssh -o StrictHostKeyChecking=no gitlab@10.0.0.33 "sh deploy.sh $project_url $service_name $docker_directory"
