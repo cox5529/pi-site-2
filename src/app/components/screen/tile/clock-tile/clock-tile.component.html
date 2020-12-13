@@ -3,7 +3,7 @@
     {{ date | date: configuration.dateFormat }}
   </h3>
   <h1>
-    {{ date | date: "hh:mm" }}
+    {{ date | date: "h:mm" }}
     <span class="seconds" *ngIf="configuration.showSeconds">{{ date | date: "ss" }}</span>
     {{ date | date: "a" }}
   </h1>

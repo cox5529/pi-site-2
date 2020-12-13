@@ -3,6 +3,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpService } from 'src/app/services/http.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Roles } from 'src/app/models/enums/roles';
+import { SessionService } from 'src/app/services/session.service';
+import { JwtService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-navigation',
@@ -31,16 +33,17 @@ export class NavigationComponent implements OnInit {
   ];
 
   constructor(
-    private httpService: HttpService,
+    private jwtService: JwtService,
+    private sessionService: SessionService,
     private authService: AuthenticationService,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.updateAuthentication(this.authService.isAuthenticated());
+    this.updateAuthentication(this.jwtService.isAuthenticated());
 
-    this.httpService.onAuthenticateChange.subscribe((x) => {
+    this.sessionService.onAuthenticateChange.subscribe((x) => {
       this.updateAuthentication(x);
     });
 
@@ -55,8 +58,8 @@ export class NavigationComponent implements OnInit {
 
   private updateAuthentication(isAuthenticated: boolean): void {
     if (isAuthenticated) {
-      this.email = this.authService.getUserEmail();
-      this.roles = this.authService.getUserRoles();
+      this.email = this.jwtService.getUserEmail();
+      this.roles = this.jwtService.getUserRoles();
     }
 
     this.isAuthenticated = isAuthenticated;

@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoginRequest } from 'src/app/models/requests/login-request';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private authService: AuthenticationService,
     private router: Router,
-    private httpService: HttpService
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl(''),
     });
 
-    this.httpService.logout();
+    this.sessionService.logout();
   }
 
   async onSubmit(): Promise<void> {

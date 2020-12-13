@@ -7,13 +7,14 @@ import {
   Router,
 } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { JwtService } from 'src/app/services/jwt.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private authService: AuthenticationService,
+    private jwtService: JwtService,
     private router: Router
   ) {}
 
@@ -21,12 +22,12 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean | UrlTree> {
-    if (!this.authService.isAuthenticated()) {
+    if (!this.jwtService.isAuthenticated()) {
       return false;
     }
 
     const roles = next.data.roles as string[];
-    if (roles && roles.length > 0 && !this.authService.isInRoles(roles)) {
+    if (roles && roles.length > 0 && !this.jwtService.isInRoles(roles)) {
       await this.router.navigateByUrl('/');
       return false;
     }

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpService } from 'src/app/services/http.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-screen-preview',
@@ -21,7 +22,7 @@ export class ScreenPreviewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
-    private httpService: HttpService
+    private sessionService: SessionService
   ) { }
 
   ngOnInit(): void {
@@ -36,8 +37,8 @@ export class ScreenPreviewComponent implements OnInit {
       }
 
       if (params.key) {
-        this.httpService.logout();
-        this.httpService.login(params.key);
+        this.sessionService.logout();
+        this.sessionService.login(params.key);
       }
 
       const id = params.id;

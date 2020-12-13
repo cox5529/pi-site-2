@@ -6,6 +6,7 @@ import { HttpService } from './http.service';
 import { Locations } from '../models/enums/locations';
 import { TileTypes } from '../models/enums/tile-types';
 import { environment } from 'src/environments/environment';
+import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

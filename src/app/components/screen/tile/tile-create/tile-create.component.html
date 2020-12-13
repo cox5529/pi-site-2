@@ -20,6 +20,11 @@
           The location field is required.
         </mat-error>
       </mat-form-field>
+      <app-tile-configuration
+        *ngIf="form.get('type').value"
+        [type]="form.get('type').value"
+        formControlName="configurationJson"
+      ></app-tile-configuration>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="onSubmit()" mat-raised-button color="primary">

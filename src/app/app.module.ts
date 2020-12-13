@@ -44,6 +44,7 @@ import { TileCreateComponent } from './components/screen/tile/tile-create/tile-c
 import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.component';
 import { ClockTileSettingsComponent } from './components/screen/tile/clock-tile/settings/clock-tile-settings.component';
 import { TileContainerComponent } from './components/screen/tile/tile-container/tile-container.component';
+import { TileConfigurationComponent } from './components/screen/tile/tile-configuration/tile-configuration.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { TileContainerComponent } from './components/screen/tile/tile-container/
     TileEditComponent,
     ClockTileSettingsComponent,
     TileContainerComponent,
+    TileConfigurationComponent,
   ],
   imports: [
     BrowserModule,

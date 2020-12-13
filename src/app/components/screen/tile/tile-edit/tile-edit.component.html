@@ -24,10 +24,10 @@
           The location field is required.
         </mat-error>
       </mat-form-field>
-      <app-clock-tile-settings
-        *ngIf="type === 'Clock'"
+      <app-tile-configuration
+        [type]="type"
         formControlName="configurationJson"
-      ></app-clock-tile-settings>
+      ></app-tile-configuration>
     </mat-card-content>
     <mat-card-actions>
       <button (click)="onSubmit()" mat-raised-button color="primary">

@@ -2,39 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  token: string;
   baseUrl: string = environment.baseUrl;
 
-  onAuthenticateChange: Subject<boolean>;
-
   constructor(
-    private http: HttpClient
-  ) {
-    this.token = localStorage.getItem('token');
-    this.onAuthenticateChange = new Subject();
-  }
-
-  login(token: string) {
-    this.token = token;
-    localStorage.setItem('token', token);
-    this.onAuthenticateChange.next(true);
-  }
-
-  logout(): void {
-    this.token = undefined;
-    localStorage.removeItem('token');
-    this.onAuthenticateChange.next(false);
-  }
+    private http: HttpClient,
+    private sessionService: SessionService
+  ) {}
 
   async postAsJson<T>(url: string, body: any, sendToken: boolean, port: string): Promise<HttpResponse<T>> {
     let headers = new HttpHeaders();
     if (sendToken) {
-      headers = headers.set('Authorization', `Bearer ${this.token}`);
+      headers = headers.set('Authorization', `Bearer ${this.sessionService.getToken()}`);
     }
 
     return await this.http.post<T>(`${this.baseUrl}:${port}${url}`, body, { headers, observe: 'response' })
@@ -47,7 +31,7 @@ export class HttpService {
   async delete<T>(url: string, sendToken: boolean, port: string): Promise<HttpResponse<T>> {
     let headers = new HttpHeaders();
     if (sendToken) {
-      headers = headers.set('Authorization', `Bearer ${this.token}`);
+      headers = headers.set('Authorization', `Bearer ${this.sessionService.getToken()}`);
     }
 
     return await this.http.delete<T>(`${this.baseUrl}:${port}${url}`, { headers, observe: 'response' })
@@ -60,7 +44,7 @@ export class HttpService {
   async putAsJson<T>(url: string, body: any, sendToken: boolean, port: string): Promise<HttpResponse<T>> {
     let headers = new HttpHeaders();
     if (sendToken) {
-      headers = headers.set('Authorization', `Bearer ${this.token}`);
+      headers = headers.set('Authorization', `Bearer ${this.sessionService.getToken()}`);
     }
 
     return await this.http.put<T>(`${this.baseUrl}:${port}${url}`, body, { headers, observe: 'response' })
@@ -73,7 +57,7 @@ export class HttpService {
   async get<T>(url: string, sendToken: boolean, params: HttpParams, port: string): Promise<HttpResponse<T>> {
     let headers = new HttpHeaders();
     if (sendToken) {
-      headers = headers.set('Authorization', `Bearer ${this.token}`);
+      headers = headers.set('Authorization', `Bearer ${this.sessionService.getToken()}`);
     }
 
     if (!params) {

@@ -28,7 +28,8 @@ export class TileCreateComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       type: new FormControl(),
-      location: new FormControl()
+      location: new FormControl(),
+      configurationJson: new FormControl()
     });
 
     this.locations = this.tileService.getLocations();
@@ -53,6 +54,7 @@ export class TileCreateComponent implements OnInit {
     data.screenId = this.screenId;
     data.location = this.form.get('location').value;
     data.type = this.form.get('type').value;
+    data.configurationJson = this.form.get('configurationJson').value ?? '{}';
 
     const result = await this.tileService.create(data);
     if (result.ok) {

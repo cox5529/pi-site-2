@@ -11,7 +11,7 @@ import { TileTypes } from 'src/app/models/enums/tile-types';
 @Component({
   selector: 'app-tile-edit',
   templateUrl: './tile-edit.component.html',
-  styleUrls: ['./tile-edit.component.sass'],
+  styleUrls: [ './tile-edit.component.sass' ]
 })
 export class TileEditComponent implements OnInit {
   data: TileDto;
