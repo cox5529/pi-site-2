@@ -1,6 +1,6 @@
 import { ControlValueAccessor } from '@angular/forms';
 
-export abstract class TileSettingsComponent<T> implements ControlValueAccessor {
+export abstract class JsonEditorComponent<T> implements ControlValueAccessor {
 
   onChange = (_: string) => {};
 

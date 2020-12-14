@@ -45,6 +45,11 @@ import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.
 import { ClockTileSettingsComponent } from './components/screen/tile/clock-tile/settings/clock-tile-settings.component';
 import { TileContainerComponent } from './components/screen/tile/tile-container/tile-container.component';
 import { TileConfigurationComponent } from './components/screen/tile/tile-configuration/tile-configuration.component';
+import { TableListComponent } from './components/table/table-list/table-list.component';
+import { TableCreateComponent } from './components/table/table-create/table-create.component';
+import { TableEditComponent } from './components/table/table-edit/table-edit.component';
+import { AddColumnDialogComponent } from './components/table/add-column-dialog/add-column-dialog.component';
+import { TableDataComponent } from './components/table/table-data/table-data.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +74,11 @@ import { TileConfigurationComponent } from './components/screen/tile/tile-config
     ClockTileSettingsComponent,
     TileContainerComponent,
     TileConfigurationComponent,
+    TableListComponent,
+    TableCreateComponent,
+    TableEditComponent,
+    AddColumnDialogComponent,
+    TableDataComponent
   ],
   imports: [
     BrowserModule,

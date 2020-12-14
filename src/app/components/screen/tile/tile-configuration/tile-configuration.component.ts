@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TileSettingsComponent } from '../tile-settings.component';
+import { JsonEditorComponent } from '../../../json-editor.component';
 
 @Component({
   selector: 'app-tile-configuration',
@@ -15,7 +15,7 @@ import { TileSettingsComponent } from '../tile-settings.component';
   ],
 })
 export class TileConfigurationComponent
-  extends TileSettingsComponent<any>
+  extends JsonEditorComponent<any>
   implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() type: string;
 

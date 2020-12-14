@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add Column</h1>
+<div mat-dialog-content [formGroup]='form'>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" type="text" required />
+    <mat-error *ngIf="form.get('name').hasError('required')">
+      The name field is required.
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button type="button" mat-raised-button (click)="submit()" color="primary">Add column</button>
+  <button type="button" mat-flat-button (click)="cancel()">Cancel</button>
+</div>

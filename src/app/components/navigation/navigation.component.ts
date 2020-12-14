@@ -29,13 +29,17 @@ export class NavigationComponent implements OnInit {
       path: '/screen',
       text: 'Screens',
       role: Roles[Roles.Screen]
+    },
+    {
+      path: '/table',
+      text: 'Tables',
+      role: Roles[Roles.Screen]
     }
   ];
 
   constructor(
     private jwtService: JwtService,
     private sessionService: SessionService,
-    private authService: AuthenticationService,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {}

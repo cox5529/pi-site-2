@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TileSettingsComponent } from '../../tile-settings.component';
+import { JsonEditorComponent } from '../../../../json-editor.component';
 import {
   FormControl,
   NG_VALUE_ACCESSOR,
@@ -20,7 +20,7 @@ import { merge, Subscription } from 'rxjs';
     },
   ],
 })
-export class ClockTileSettingsComponent extends TileSettingsComponent<ClockConfig>
+export class ClockTileSettingsComponent extends JsonEditorComponent<ClockConfig>
   implements OnInit, ControlValueAccessor, OnDestroy {
   showDate: FormControl;
   dateFormat: FormControl;
