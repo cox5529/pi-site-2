@@ -50,6 +50,7 @@ import { TableCreateComponent } from './components/table/table-create/table-crea
 import { TableEditComponent } from './components/table/table-edit/table-edit.component';
 import { AddColumnDialogComponent } from './components/table/add-column-dialog/add-column-dialog.component';
 import { TableDataComponent } from './components/table/table-data/table-data.component';
+import { EditRowDialogComponent } from './components/table/edit-row-dialog/edit-row-dialog.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { TableDataComponent } from './components/table/table-data/table-data.com
     TableCreateComponent,
     TableEditComponent,
     AddColumnDialogComponent,
-    TableDataComponent
+    TableDataComponent,
+    EditRowDialogComponent
   ],
   imports: [
     BrowserModule,

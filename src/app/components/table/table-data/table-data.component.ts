@@ -7,6 +7,7 @@ import { Row } from 'src/app/models/row';
 import { Table } from 'src/app/models/table';
 import { JsonEditorComponent } from '../../json-editor.component';
 import { AddColumnDialogComponent } from '../add-column-dialog/add-column-dialog.component';
+import { EditRowDialogComponent } from '../edit-row-dialog/edit-row-dialog.component';
 
 @Component({
   selector: 'app-table-data',
@@ -31,8 +32,7 @@ export class TableDataComponent extends JsonEditorComponent<Table> implements On
   }
 
   constructor(
-    private dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private dialog: MatDialog
   ) {
     super();
 
@@ -64,7 +64,15 @@ export class TableDataComponent extends JsonEditorComponent<Table> implements On
       }
 
       this.table.columns.push(x);
+
+      this.saveChanges();
     });
+  }
+
+  deleteColumn(column: Column) {
+    this.table.columns = this.table.columns.filter(x => x.id !== column.id);
+
+    this.saveChanges();
   }
 
   addRow(): void {
@@ -77,6 +85,37 @@ export class TableDataComponent extends JsonEditorComponent<Table> implements On
 
     this.table.data.push(row);
     this.dataSource = new MatTableDataSource(this.table.data);
+
+    this.saveChanges();
+  }
+
+  deleteRow(row: Row): void {
+    this.table.data = this.table.data.filter(x => x.id !== row.id);
+    this.dataSource = new MatTableDataSource(this.table.data);
+
+    this.saveChanges();
+  }
+
+  editRow(row: Row): void {
+    const dialogRef = this.dialog.open(EditRowDialogComponent, {
+      width: '400px',
+      data: {
+        columns: this.table.columns,
+        row
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((x: Row) => {
+      if (!x) {
+        return;
+      }
+
+      for (const column of this.table.columns) {
+        row[column.name] = x[column.name];
+      }
+
+      this.saveChanges();
+    });
   }
 
   protected updateValue(value: Table): void {
@@ -86,6 +125,10 @@ export class TableDataComponent extends JsonEditorComponent<Table> implements On
 
   protected serialize(): string {
     return JSON.stringify(this.table);
+  }
+
+  private saveChanges(): void {
+    this.onChange(this.serialize());
   }
 
   private nextColumnId(): number {
