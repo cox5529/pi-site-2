@@ -19,6 +19,7 @@ import { TileCreateComponent } from './components/screen/tile/tile-create/tile-c
 import { TableListComponent } from './components/table/table-list/table-list.component';
 import { TableEditComponent } from './components/table/table-edit/table-edit.component';
 import { TableCreateComponent } from './components/table/table-create/table-create.component';
+import { ScreenPreviewComponent } from './components/screen/screen-preview/screen-preview.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'users/invite', component: UserInviteComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Administrator] } },
   { path: 'screen', component: ScreenListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/details', component: ScreenDetailsComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
+  { path: 'screen/preview', component: ScreenPreviewComponent },
   { path: 'screen/edit', component: ScreenEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/create', component: ScreenCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/tile/edit', component: TileEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },

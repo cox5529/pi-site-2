@@ -1,3 +1,5 @@
 <div class="container" *ngIf="tile">
   <app-clock-tile class="tile" *ngIf="type === 'Clock'" [tile]="tile"></app-clock-tile>
+  <app-table-tile class="tile" *ngIf="type === 'Table'" [tile]="tile"></app-table-tile>
+  <app-weather-tile class="tile" *ngIf="type === 'Weather'" [tile]="tile"></app-weather-tile>
 </div>

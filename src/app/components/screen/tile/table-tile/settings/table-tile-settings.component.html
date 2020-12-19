@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <mat-slide-toggle formControlName="showColumns">Show column headers</mat-slide-toggle>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput type="text" formControlName="title" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Table</mat-label>
+    <mat-select formControlName="table" required>
+      <mat-option *ngFor="let table of tableOptions" [value]="table.id">{{table.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('table').hasError('required')">
+      The table field is required.
+    </mat-error>
+  </mat-form-field>
+</div>

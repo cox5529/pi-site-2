@@ -1,5 +1,5 @@
 export enum TileTypes {
-  Checklist = 0,
+  Table = 0,
   Clock,
   Weather,
 }

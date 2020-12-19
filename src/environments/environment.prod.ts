@@ -3,5 +3,6 @@ export const environment = {
   baseUrl: 'https://home.bscox.com',
   authServicePort: '8081',
   recipeServicePort: '8083',
-  screenServicePort: '8085'
+  screenServicePort: '8085',
+  tileRefreshInterval: 3600
 };

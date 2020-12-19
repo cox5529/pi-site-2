@@ -19,6 +19,14 @@ export class NavigationComponent implements OnInit {
   route = '';
   roles: string[] = [];
 
+  get dark(): boolean {
+    return this.route?.includes('dark=true') ?? false;
+  }
+
+  get fullscreen(): boolean {
+    return this.route?.startsWith('/screen/preview') ?? false;
+  }
+
   links: Link[] = [
     {
       path: '/users',

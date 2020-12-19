@@ -47,10 +47,11 @@ export class ClockTileSettingsComponent extends JsonEditorComponent<ClockConfig>
   }
 
   protected serialize(): string {
-    const config = new ClockConfig();
-    config.showDate = this.showDate.value;
-    config.dateFormat = this.dateFormat.value;
-    config.showSeconds = this.showSeconds.value;
+    const config: ClockConfig = {
+      showDate: this.showDate.value,
+      dateFormat: this.dateFormat.value,
+      showSeconds: this.showSeconds.value
+    };
 
     return JSON.stringify(config);
   }

@@ -1,5 +1,5 @@
-<div class="site-container">
-  <nav mat-tab-nav-bar backgroundColor="primary">
+<div class="site-container" [class.dark]="dark">
+  <nav mat-tab-nav-bar backgroundColor="primary" *ngIf="!fullscreen">
     <button
       fxHide="true"
       fxShow.lt-md="true"
@@ -53,7 +53,7 @@
         </a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content [class.fullscreen]="fullscreen">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

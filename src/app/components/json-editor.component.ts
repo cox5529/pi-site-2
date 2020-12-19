@@ -11,10 +11,14 @@ export abstract class JsonEditorComponent<T> implements ControlValueAccessor {
       json = '{}';
     }
 
+    if (typeof json !== 'string') {
+      json = JSON.stringify(json);
+    }
+
     let data: T;
     try {
       data = JSON.parse(json);
-    } catch {
+    } catch (e) {
       data = {} as T;
     }
 

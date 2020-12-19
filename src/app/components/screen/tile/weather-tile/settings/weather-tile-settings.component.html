@@ -1,0 +1,14 @@
+<div [formGroup]="form">
+  <mat-slide-toggle formControlName="high">Show high temperature</mat-slide-toggle>
+  <mat-slide-toggle formControlName="low">Show low temperature</mat-slide-toggle>
+  <mat-slide-toggle formControlName="current">Show current temperature</mat-slide-toggle>
+  <mat-slide-toggle formControlName="fiveDay">Show 5-day forecast</mat-slide-toggle>
+  <mat-slide-toggle formControlName="hourly">Show hourly forecast</mat-slide-toggle>
+  <mat-form-field>
+    <mat-label>Zip code</mat-label>
+    <input matInput type="text" formControlName="zip" required />
+    <mat-error *ngIf="form.get('zip').hasError('required')">
+      The zip code field is required.
+    </mat-error>
+  </mat-form-field>
+</div>

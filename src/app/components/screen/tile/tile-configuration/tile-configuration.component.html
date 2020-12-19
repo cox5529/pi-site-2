@@ -2,3 +2,11 @@
   *ngIf="type === 'Clock'"
   [formControl]='control'
 ></app-clock-tile-settings>
+<app-table-tile-settings
+  *ngIf="type === 'Table'"
+  [formControl]='control'
+></app-table-tile-settings>
+<app-weather-tile-settings
+  *ngIf="type === 'Weather'"
+  [formControl]='control'
+></app-weather-tile-settings>

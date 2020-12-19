@@ -51,6 +51,10 @@ import { TableEditComponent } from './components/table/table-edit/table-edit.com
 import { AddColumnDialogComponent } from './components/table/add-column-dialog/add-column-dialog.component';
 import { TableDataComponent } from './components/table/table-data/table-data.component';
 import { EditRowDialogComponent } from './components/table/edit-row-dialog/edit-row-dialog.component';
+import { TableTileComponent } from './components/screen/tile/table-tile/table-tile.component';
+import { TableTileSettingsComponent } from './components/screen/tile/table-tile/settings/table-tile-settings.component';
+import { WeatherTileComponent } from './components/screen/tile/weather-tile/weather-tile.component';
+import { WeatherTileSettingsComponent } from './components/screen/tile/weather-tile/settings/weather-tile-settings.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,11 @@ import { EditRowDialogComponent } from './components/table/edit-row-dialog/edit-
     TableEditComponent,
     AddColumnDialogComponent,
     TableDataComponent,
-    EditRowDialogComponent
+    EditRowDialogComponent,
+    TableTileComponent,
+    TableTileSettingsComponent,
+    WeatherTileComponent,
+    WeatherTileSettingsComponent
   ],
   imports: [
     BrowserModule,

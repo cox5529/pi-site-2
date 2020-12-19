@@ -47,7 +47,7 @@ export class TableListComponent implements OnInit {
   }
 
   async details(row: TableDto): Promise<void> {
-    await this.router.navigateByUrl(`/table/details?id=${row.id}`);
+    await this.router.navigateByUrl(`/table/edit?id=${row.id}`);
   }
 
   async updateData(): Promise<void> {
