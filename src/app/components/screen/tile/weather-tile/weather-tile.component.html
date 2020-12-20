@@ -1,1 +1,37 @@
-<p>weather-tile works!</p>
+<div *ngIf="data">
+  <h1>Weather in {{ data.location }}</h1>
+  <div class="current-daily">
+    <div class="daily-numbers">
+      <p>High: {{ data.dayForecast.high }}&deg;F</p>
+      <p>Low: {{ data.dayForecast.low }}&deg;F</p>
+      <p>Precipitation chance: {{ data.dayForecast.precipitationChance }}%</p>
+      <p>Wind speed: {{ data.current.windSpeed }} mph</p>
+    </div>
+    <div class="current">
+      <div class="current-numbers">
+        <div class="current-temperature">
+          {{ data.current.temperature }}&deg;F
+        </div>
+        <div class="current-small">
+          <p>Feels like: {{ data.current.feelsLike }}&deg;F</p>
+          <p>{{ data.current.description }}</p>
+        </div>
+      </div>
+      <img [src]="data.current.icon" [alt]="data.current.description" />
+    </div>
+  </div>
+  <div class="hourly">
+    <div class="forecast" *ngFor="let forecast of data.hourlyForecast">
+      <div class="cloud">
+        <img [src]="forecast.icon" [alt]="forecast.description" />
+        <span *ngIf="forecast.precipitationChance > 0">
+          {{forecast.precipitationChance}}%
+        </span>
+      </div>
+      <div class="time">{{forecast.time}}</div>
+      <div class="numbers">
+        {{forecast.temperature}}&deg;F
+      </div>
+    </div>
+  </div>
+</div>

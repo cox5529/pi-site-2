@@ -1,0 +1,49 @@
+.current-daily
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.daily-numbers
+  font-size: 18px
+
+.current
+  display: flex
+  flex-direction: row
+  justify-content: flex-end
+
+  .current-numbers
+    .current-small
+      font-size: 18px
+      text-align: right
+
+    .current-temperature
+      font-size: 64px
+      line-height: 64px
+
+  img
+    object-fit: contain
+    object-position: top
+    width: 128px
+
+.hourly
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  flex-wrap: nowrap
+
+  .forecast
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    .cloud
+      display: flex
+      flex-direction: row
+      align-items: center
+
+      span
+        font-size: 12px
+
+    img
+      height: 48px
+      object-fit: contain

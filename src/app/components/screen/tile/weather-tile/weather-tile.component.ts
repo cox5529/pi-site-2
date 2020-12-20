@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherDto } from 'src/app/models/dtos/weather-dto';
 import { WeatherConfig } from 'src/app/models/tile-configs/weather-config';
+import { WeatherService } from 'src/app/services/weather.service';
 import { BaseTile } from '../base-tile';
 
 @Component({
@@ -8,12 +10,19 @@ import { BaseTile } from '../base-tile';
   styleUrls: ['./weather-tile.component.sass']
 })
 export class WeatherTileComponent extends BaseTile<WeatherConfig> {
+  data: WeatherDto;
 
-  constructor() {
+  constructor(
+    private weatherService: WeatherService
+  ) {
     super();
   }
 
   initialize(): void {
-    throw new Error('Method not implemented.');
+    this.weatherService.get(this.configuration.zip).then(response => {
+      if (response.ok) {
+        this.data = response.body;
+      }
+    });
   }
 }

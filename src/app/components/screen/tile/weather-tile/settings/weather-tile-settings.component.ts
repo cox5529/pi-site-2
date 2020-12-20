@@ -28,12 +28,7 @@ export class WeatherTileSettingsComponent extends JsonEditorComponent<WeatherCon
     super();
 
     this.form = this.formBuilder.group({
-      zip: this.formBuilder.control(''),
-      fiveDay: this.formBuilder.control(''),
-      high: this.formBuilder.control(''),
-      low: this.formBuilder.control(''),
-      current: this.formBuilder.control(''),
-      hourly: this.formBuilder.control('')
+      zip: this.formBuilder.control('')
     });
 
     this.changeSubscription = this.form.valueChanges.subscribe(() => this.onChange(this.serialize()));
@@ -44,11 +39,6 @@ export class WeatherTileSettingsComponent extends JsonEditorComponent<WeatherCon
 
   protected updateValue(value: WeatherConfig): void {
     this.form.get('zip').setValue(value.zip);
-    this.form.get('fiveDay').setValue(value.fiveDay);
-    this.form.get('high').setValue(value.high);
-    this.form.get('low').setValue(value.low);
-    this.form.get('current').setValue(value.current);
-    this.form.get('hourly').setValue(value.hourly);
   }
 
   protected serialize(): string {
