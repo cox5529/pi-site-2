@@ -7,6 +7,6 @@
     <td mat-cell *matCellDef="let row">{{row[column.name]}}</td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnNames"></tr>
+  <tr mat-header-row [class.dense]="configuration.dense" *matHeaderRowDef="columnNames"></tr>
+  <tr mat-row [class.dense]="configuration.dense" *matRowDef="let row; columns: columnNames"></tr>
 </table>

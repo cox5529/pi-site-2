@@ -34,7 +34,8 @@ export class TableTileSettingsComponent extends JsonEditorComponent<TableConfig>
     this.form = this.formBuilder.group({
       showColumns: this.formBuilder.control(''),
       table: this.formBuilder.control(''),
-      title: this.formBuilder.control('')
+      title: this.formBuilder.control(''),
+      dense: this.formBuilder.control('')
     });
   }
 
@@ -61,10 +62,12 @@ export class TableTileSettingsComponent extends JsonEditorComponent<TableConfig>
     this.form.get('showColumns').setValue(value.showHeaders);
     this.form.get('table').setValue(value.tableId);
     this.form.get('title').setValue(value.title);
+    this.form.get('dense').setValue(value.dense);
   }
 
   protected serialize(): string {
     const config: TableConfig = {
+      dense: this.form.get('dense').value,
       tableId: this.form.get('table').value,
       showHeaders: this.form.get('showColumns').value,
       title: this.form.get('title').value
