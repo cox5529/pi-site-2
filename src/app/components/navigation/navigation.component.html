@@ -18,7 +18,7 @@
       fxHide.lt-md="true"
       [routerLink]="[link.path]"
       [active]="route.startsWith(link.path)"
-      [hidden]="!roles.includes(link.role)"
+      [class.hidden]="!roles || !roles.includes(link.role)"
     >
       {{ link.text }}
     </a>
@@ -28,8 +28,9 @@
       *ngIf="isAuthenticated"
       fxHide="true"
       fxShow.lg="true"
-      >{{ email }}</span
     >
+      {{ email }}
+    </span>
     <a
       class="non-tab-button"
       [routerLink]="['/auth/login']"
@@ -47,7 +48,7 @@
           *ngFor="let link of links"
           [routerLink]="[link.path]"
           (click)="isOpen = false"
-          [hidden]="!roles.includes(link.role)"
+          [class.hidden]="!roles || !roles.includes(link.role)"
         >
           {{ link.text }}
         </a>
