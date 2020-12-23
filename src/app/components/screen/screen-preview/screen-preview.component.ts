@@ -33,7 +33,7 @@ export class ScreenPreviewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    merge(this.route.queryParams, timer(0, environment.tileRefreshInterval * 1000)).subscribe(async (x) => {
+    this.subscriptions.push(merge(this.route.queryParams, timer(0, environment.tileRefreshInterval * 1000)).subscribe(async (x) => {
       if (typeof x !== 'number') {
         if (!x || !x.id) {
           await this.router.navigateByUrl('/auth/login');
@@ -65,7 +65,7 @@ export class ScreenPreviewComponent implements OnInit, OnDestroy {
           'Dismiss'
         );
       }
-    });
+    }));
   }
 
   getTileByLocation(location: string): TileDto {

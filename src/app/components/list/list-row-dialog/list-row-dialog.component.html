@@ -1,0 +1,17 @@
+<h1>{{data.edit ? 'Edit' : 'Add'}} Row</h1>
+<form [formGroup]="form">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Row text</mat-label>
+      <input matInput required formControlName="text" type="text" />
+      <mat-error *ngIf="form.get('text').hasError('required')">
+        The text field is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button type="submit" mat-raised-button (click)="submit()" color="primary">Save</button>
+    <button type="button" *ngIf="data.edit" mat-raised-button (click)="delete()" color="warn">Delete</button>
+    <button type="button" mat-flat-button (click)="cancel()">Cancel</button>
+  </div>
+</form>

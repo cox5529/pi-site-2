@@ -55,6 +55,14 @@ import { TableTileComponent } from './components/screen/tile/table-tile/table-ti
 import { TableTileSettingsComponent } from './components/screen/tile/table-tile/settings/table-tile-settings.component';
 import { WeatherTileComponent } from './components/screen/tile/weather-tile/weather-tile.component';
 import { WeatherTileSettingsComponent } from './components/screen/tile/weather-tile/settings/weather-tile-settings.component';
+import { ListCreateComponent } from './components/list/list-create/list-create.component';
+import { ListEditComponent } from './components/list/list-edit/list-edit.component';
+import { ListListComponent } from './components/list/list-list/list-list.component';
+import { ListDataComponent } from './components/list/list-data/list-data.component';
+import { ListRowDialogComponent } from './components/list/list-row-dialog/list-row-dialog.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ListTileComponent } from './components/screen/tile/list-tile/list-tile.component';
+import { ListTileSettingsComponent } from './components/screen/tile/list-tile/settings/list-tile-settings.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +96,14 @@ import { WeatherTileSettingsComponent } from './components/screen/tile/weather-t
     TableTileComponent,
     TableTileSettingsComponent,
     WeatherTileComponent,
-    WeatherTileSettingsComponent
+    WeatherTileSettingsComponent,
+    ListCreateComponent,
+    ListEditComponent,
+    ListListComponent,
+    ListDataComponent,
+    ListRowDialogComponent,
+    ListTileComponent,
+    ListTileSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,7 +130,8 @@ import { WeatherTileSettingsComponent } from './components/screen/tile/weather-t
     MatTableModule,
     MatSelectModule,
     MatDialogModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],

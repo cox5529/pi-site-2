@@ -20,6 +20,9 @@ import { TableListComponent } from './components/table/table-list/table-list.com
 import { TableEditComponent } from './components/table/table-edit/table-edit.component';
 import { TableCreateComponent } from './components/table/table-create/table-create.component';
 import { ScreenPreviewComponent } from './components/screen/screen-preview/screen-preview.component';
+import { ListCreateComponent } from './components/list/list-create/list-create.component';
+import { ListEditComponent } from './components/list/list-edit/list-edit.component';
+import { ListListComponent } from './components/list/list-list/list-list.component';
 
 
 const routes: Routes = [
@@ -41,6 +44,9 @@ const routes: Routes = [
   { path: 'table', component: TableListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'table/edit', component: TableEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'table/create', component: TableCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
+  { path: 'list', component: ListListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
+  { path: 'list/edit', component: ListEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
+  { path: 'list/create', component: ListCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
 ];
 
 @NgModule({

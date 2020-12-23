@@ -21,7 +21,7 @@ import { EditRowDialogComponent } from '../edit-row-dialog/edit-row-dialog.compo
     },
   ],
 })
-export class TableDataComponent extends JsonEditorComponent<Table> implements OnInit, ControlValueAccessor {
+export class TableDataComponent extends JsonEditorComponent<Table> implements ControlValueAccessor {
   table: Table;
   dataSource: MatTableDataSource<Row>;
 
@@ -42,9 +42,6 @@ export class TableDataComponent extends JsonEditorComponent<Table> implements On
     };
 
     this.dataSource = new MatTableDataSource<Row>(this.table.data);
-  }
-
-  ngOnInit(): void {
   }
 
   addColumn(): void {

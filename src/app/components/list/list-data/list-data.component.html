@@ -1,0 +1,9 @@
+<h2>Data</h2>
+<mat-action-list cdkDropList (cdkDropListDropped)="drop($event)">
+  <button cdkDrag mat-list-item (click)="editRow(item)" *ngFor='let item of list'>
+    {{ item.text }}
+  </button>
+</mat-action-list>
+<button type="button" (click)="addRow()" mat-raised-button color="primary">
+  <mat-icon>add</mat-icon> Add row
+</button>

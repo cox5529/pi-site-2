@@ -42,6 +42,11 @@ export class NavigationComponent implements OnInit {
       path: '/table',
       text: 'Tables',
       role: Roles[Roles.Screen]
+    },
+    {
+      path: '/list',
+      text: 'Lists',
+      role: Roles[Roles.Screen]
     }
   ];
 
