@@ -30,9 +30,12 @@ export class AreaComponent implements AfterViewInit {
   scale = 0; // pixels / ft
   verticalOffset = 300;
   padding = 20;
-  prompt = 'How wide is the plot of land in feet?';
+  prompt = 'How long is the plot of land in feet?';
   showForm = true;
   angleText = '45.00';
+
+  enteredWidth = 0;
+  enteredHeight = 0;
 
   control: FormControl;
   canvas: CanvasRenderingContext2D;
@@ -102,11 +105,16 @@ export class AreaComponent implements AfterViewInit {
       return;
     }
 
-    if (this.scale === 0) {
-      if (this.width > this.height) {
-        this.scale = this.canvas.canvas.width / this.width;
+    if (this.enteredHeight === 0) {
+      this.enteredHeight = this.control.value;
+      this.control.setValue('');
+      this.prompt = 'How wide is the plot of land in feet?';
+    } else if (this.scale === 0) {
+      this.enteredWidth = this.control.value;
+      if (this.enteredWidth > this.enteredHeight) {
+        this.scale = this.canvas.canvas.width / this.enteredWidth;
       } else {
-        this.scale = this.canvas.canvas.height / this.height;
+        this.scale = this.canvas.canvas.height / this.enteredHeight;
       }
 
       this.prompt = 'Click to add the first point of the house.';

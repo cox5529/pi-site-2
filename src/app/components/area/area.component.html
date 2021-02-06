@@ -27,7 +27,7 @@
     <p>{{prompt}}</p>
     <form (ngSubmit)="onSubmit()" *ngIf="showForm">
       <mat-form-field>
-        <input matInput type="number" min="0" [formControl]="control" required />
+        <input matInput type="number" min="1" [formControl]="control" required />
       </mat-form-field>
     </form>
   </div>
