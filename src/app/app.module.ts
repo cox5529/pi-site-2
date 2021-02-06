@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -63,6 +63,7 @@ import { ListRowDialogComponent } from './components/list/list-row-dialog/list-r
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListTileComponent } from './components/screen/tile/list-tile/list-tile.component';
 import { ListTileSettingsComponent } from './components/screen/tile/list-tile/settings/list-tile-settings.component';
+import { AreaComponent } from './components/area/area.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { ListTileSettingsComponent } from './components/screen/tile/list-tile/se
     ListRowDialogComponent,
     ListTileComponent,
     ListTileSettingsComponent,
+    AreaComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +123,7 @@ import { ListTileSettingsComponent } from './components/screen/tile/list-tile/se
     MatListModule,
     MatCardModule,
     MatFormFieldModule,
+    FormsModule,
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
