@@ -42,6 +42,7 @@ export class AreaComponent implements AfterViewInit {
 
   @ViewChild('container') container: ElementRef<HTMLDivElement>;
   @ViewChild('canvas') canvasRef: ElementRef<HTMLCanvasElement>;
+  @ViewChild('inputElement') inputElement: ElementRef<HTMLInputElement>;
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -52,9 +53,10 @@ export class AreaComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.onResize();
-    this.cdRef.detectChanges();
 
     this.canvas = this.canvasRef.nativeElement.getContext('2d');
+    this.activateForm();
+    this.cdRef.detectChanges();
   }
 
   onClick(event: MouseEvent) {
@@ -208,10 +210,10 @@ export class AreaComponent implements AfterViewInit {
   }
 
   getNextDistance() {
-    this.showForm = true;
     this.prompt =
       'How long in feet is the first wall extending from this point in feet?';
     this.control.setValue('');
+    this.activateForm();
   }
 
   changeAngle() {
@@ -250,6 +252,11 @@ export class AreaComponent implements AfterViewInit {
         y: y + this.nextLength * sin[i],
       });
     }
+  }
+
+  activateForm() {
+    this.showForm = true;
+    this.inputElement.nativeElement.focus();
   }
 
   paint() {

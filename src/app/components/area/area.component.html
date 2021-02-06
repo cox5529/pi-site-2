@@ -1,34 +1,61 @@
-<div class="row">
-  <div class="col-sm-9">
-    <h1>Building Area Calculator</h1>
+<mat-card>
+  <div class="row">
+  <div class="col">
+    <mat-card-title>Building Area Calculator</mat-card-title>
   </div>
-  <div class="col-sm-3">
-    <p class="text-right mt-2">
-      <button
-        id="angle-button"
-        type="button"
-        (click)="changeAngle();"
-        class="btn btn-secondary"
-      >
-        {{angleText}}&deg;
-      </button>
-      <button type="button" (click)="zoomFit()" class="btn btn-secondary">
-        <i class="material-icons">crop_free</i>
-      </button>
-      <button type="button" (click)="undo()" class="btn btn-secondary">
-        <i class="material-icons">undo</i>
-      </button>
-    </p>
+  <div class="col">
+    <button
+      id="angle-button"
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="changeAngle()"
+      class="btn btn-secondary"
+    >
+      {{ angleText }}&deg;
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="zoomFit()"
+      class="btn btn-secondary"
+    >
+      <i class="material-icons">crop_free</i>
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="undo()"
+      class="btn btn-secondary"
+    >
+      <i class="material-icons">undo</i>
+    </button>
   </div>
 </div>
 <div class="row">
-  <div #container (window:resize)="onResize()" class="col-sm-12">
-    <canvas #canvas (click)="onClick($event)" [width]="width" [height]="height"></canvas>
-    <p>{{prompt}}</p>
-    <form (ngSubmit)="onSubmit()" *ngIf="showForm">
+  <div #container (window:resize)="onResize()">
+    <canvas
+      #canvas
+      (click)="onClick($event)"
+      [width]="width"
+      [height]="height"
+    ></canvas>
+    <p>{{ prompt }}</p>
+    <form (ngSubmit)="onSubmit()" [style.opacity]="showForm ? '1' : '0'">
       <mat-form-field>
-        <input matInput type="number" min="1" [formControl]="control" required />
+        <input
+          #inputElement
+          matInput
+          type="number"
+          min="1"
+          [formControl]="control"
+          required
+        />
       </mat-form-field>
     </form>
   </div>
 </div>
+
+</mat-card>
