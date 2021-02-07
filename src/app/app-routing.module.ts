@@ -22,6 +22,7 @@ import { ListCreateComponent } from './components/list/list-create/list-create.c
 import { ListEditComponent } from './components/list/list-edit/list-edit.component';
 import { ListListComponent } from './components/list/list-list/list-list.component';
 import { AreaComponent } from './components/area/area.component';
+import { RecipeHomeComponent } from './components/recipe/recipe-home/recipe-home.component';
 
 
 const routes: Routes = [
@@ -44,7 +45,8 @@ const routes: Routes = [
   { path: 'list', component: ListListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'list/edit', component: ListEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'list/create', component: ListCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
-  { path: 'area', component: AreaComponent }
+  { path: 'area', component: AreaComponent },
+  { path: 'recipe', component: RecipeHomeComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Recipe] } }
 ];
 
 @NgModule({

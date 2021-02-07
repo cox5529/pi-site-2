@@ -18,6 +18,7 @@ export class NavigationComponent implements OnInit {
   isOpen = false;
   route = '';
   roles: string[] = [];
+  container = false;
 
   get dark(): boolean {
     return this.route?.includes('dark=true') ?? false;
@@ -31,27 +32,38 @@ export class NavigationComponent implements OnInit {
     {
       path: '/users',
       text: 'Users',
-      role: Roles[Roles.Administrator]
+      role: Roles[Roles.Administrator],
+      contained: false
     },
     {
       path: '/screen/details',
       text: 'Dashboard',
-      role: Roles[Roles.Screen]
+      role: Roles[Roles.Screen],
+      contained: false
     },
     {
       path: '/table',
       text: 'Tables',
-      role: Roles[Roles.Screen]
+      role: Roles[Roles.Screen],
+      contained: false
     },
     {
       path: '/list',
       text: 'Lists',
-      role: Roles[Roles.Screen]
+      role: Roles[Roles.Screen],
+      contained: false
     },
     {
       path: '/area',
       text: 'Area',
-      role: Roles[Roles.Screen]
+      role: Roles[Roles.Screen],
+      contained: false
+    },
+    {
+      path: '/recipe',
+      text: 'Recipes',
+      role: Roles[Roles.Recipe],
+      contained: true
     }
   ];
 
@@ -69,13 +81,22 @@ export class NavigationComponent implements OnInit {
       this.updateAuthentication(x);
     });
 
-    this.route = this.router.url;
+    this.onRouteChange(this.router.url);
 
     this.router.events.subscribe(x => {
       if (x instanceof NavigationEnd) {
-        this.route = x.url;
+        this.onRouteChange(x.url);
       }
     });
+  }
+
+  private onRouteChange(route: string) {
+    this.route = route;
+
+    const links = this.links.filter(x => route.startsWith(x.path));
+    if (links.length > 0) {
+      this.container = links[0].contained;
+    }
   }
 
   private updateAuthentication(isAuthenticated: boolean): void {
@@ -93,4 +114,5 @@ interface Link {
   text: string;
   path: string;
   role: string;
+  contained: boolean;
 }

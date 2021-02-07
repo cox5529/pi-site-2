@@ -64,6 +64,7 @@ import { ListTileSettingsComponent } from './components/screen/tile/list-tile/se
 import { AreaComponent } from './components/area/area.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RecipeHomeComponent } from './components/recipe/recipe-home/recipe-home.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ListTileComponent,
     ListTileSettingsComponent,
     AreaComponent,
+    RecipeHomeComponent,
   ],
   imports: [
     BrowserModule,
