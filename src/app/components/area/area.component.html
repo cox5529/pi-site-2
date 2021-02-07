@@ -1,40 +1,39 @@
 <mat-card>
   <div class="row">
-  <div class="col">
-    <mat-card-title>Building Area Calculator</mat-card-title>
+    <div class="col">
+      <mat-card-title>Building Area Calculator</mat-card-title>
+    </div>
+    <div class="col">
+      <button
+        id="angle-button"
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="changeAngle()"
+        class="btn btn-secondary"
+      >
+        {{ angleText }}&deg;
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="zoomFit()"
+        class="btn btn-secondary"
+      >
+        <i class="material-icons">crop_free</i>
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="undo()"
+        class="btn btn-secondary"
+      >
+        <i class="material-icons">undo</i>
+      </button>
+    </div>
   </div>
-  <div class="col">
-    <button
-      id="angle-button"
-      mat-raised-button
-      color="primary"
-      type="button"
-      (click)="changeAngle()"
-      class="btn btn-secondary"
-    >
-      {{ angleText }}&deg;
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      type="button"
-      (click)="zoomFit()"
-      class="btn btn-secondary"
-    >
-      <i class="material-icons">crop_free</i>
-    </button>
-    <button
-      mat-raised-button
-      color="warn"
-      type="button"
-      (click)="undo()"
-      class="btn btn-secondary"
-    >
-      <i class="material-icons">undo</i>
-    </button>
-  </div>
-</div>
-<div class="row">
   <div #container (window:resize)="onResize()">
     <canvas
       #canvas
@@ -56,6 +55,4 @@
       </mat-form-field>
     </form>
   </div>
-</div>
-
 </mat-card>
