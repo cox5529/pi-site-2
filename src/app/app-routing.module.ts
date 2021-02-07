@@ -10,10 +10,8 @@ import { Roles } from './models/enums/roles';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInviteComponent } from './components/user/user-invite/user-invite.component';
-import { ScreenListComponent } from './components/screen/screen-list/screen-list.component';
 import { ScreenDetailsComponent } from './components/screen/screen-details/screen-details.component';
 import { ScreenEditComponent } from './components/screen/screen-edit/screen-edit.component';
-import { ScreenCreateComponent } from './components/screen/screen-create/screen-create.component';
 import { TileEditComponent } from './components/screen/tile/tile-edit/tile-edit.component';
 import { TileCreateComponent } from './components/screen/tile/tile-create/tile-create.component';
 import { TableListComponent } from './components/table/table-list/table-list.component';
@@ -35,11 +33,9 @@ const routes: Routes = [
   { path: 'users/details', component: UserDetailsComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Administrator] } },
   { path: 'users/edit', component: UserEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Administrator] } },
   { path: 'users/invite', component: UserInviteComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Administrator] } },
-  { path: 'screen', component: ScreenListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/details', component: ScreenDetailsComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/preview', component: ScreenPreviewComponent },
   { path: 'screen/edit', component: ScreenEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
-  { path: 'screen/create', component: ScreenCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/tile/edit', component: TileEditComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'screen/tile/create', component: TileCreateComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },
   { path: 'table', component: TableListComponent, canActivate: [AuthGuard], data: { roles: Roles[Roles.Screen] } },

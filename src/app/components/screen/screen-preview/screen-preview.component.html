@@ -1,17 +1,122 @@
-<div class="screen" [class.preview]="isPreview">
-  <app-tile-container class="upper-third" [tile]="getTileByLocation('UpperThird')"></app-tile-container>
-  <app-tile-container class="middle-third" [tile]="getTileByLocation('MiddleThird')"></app-tile-container>
-  <app-tile-container class="lower-third" [tile]="getTileByLocation('LowerThird')"></app-tile-container>
-  <app-tile-container class="left-column" [tile]="getTileByLocation('LeftColumn')"></app-tile-container>
-  <app-tile-container class="middle-column" [tile]="getTileByLocation('MiddleColumn')"></app-tile-container>
-  <app-tile-container class="right-column" [tile]="getTileByLocation('RightColumn')"></app-tile-container>
-  <app-tile-container class="top-left" [tile]="getTileByLocation('TopLeft')"></app-tile-container>
-  <app-tile-container class="top-middle" [tile]="getTileByLocation('TopMiddle')"></app-tile-container>
-  <app-tile-container class="top-right" [tile]="getTileByLocation('TopRight')"></app-tile-container>
-  <app-tile-container class="middle-left" [tile]="getTileByLocation('MiddleLeft')"></app-tile-container>
-  <app-tile-container class="middle" [tile]="getTileByLocation('Middle')"></app-tile-container>
-  <app-tile-container class="middle-right" [tile]="getTileByLocation('MiddleRight')"></app-tile-container>
-  <app-tile-container class="bottom-left" [tile]="getTileByLocation('BottomLeft')"></app-tile-container>
-  <app-tile-container class="bottom-middle" [tile]="getTileByLocation('BottomMiddle')"></app-tile-container>
-  <app-tile-container class="bottom-right" [tile]="getTileByLocation('BottomRight')"></app-tile-container>
+<div class="screen" [class.edit]="edit" [class.preview]="isPreview">
+  <app-tile-container
+    class="upper-third"
+    [open]="isOpen('UpperThird')"
+    [class.hidden]="!isOpen('UpperThird') && !hasTile('UpperThird')"
+    (click)="open('UpperThird')"
+    [class.open]="isOpen('UpperThird')"
+    [tile]="getTileByLocation('UpperThird')"
+  ></app-tile-container>
+  <app-tile-container
+    class="middle-third"
+    [open]="isOpen('MiddleThird')"
+    [class.hidden]="!isOpen('MiddleThird') && !hasTile('MiddleThird')"
+    (click)="open('MiddleThird')"
+    [class.open]="isOpen('MiddleThird')"
+    [tile]="getTileByLocation('MiddleThird')"
+  ></app-tile-container>
+  <app-tile-container
+    class="lower-third"
+    [open]="isOpen('LowerThird')"
+    [class.hidden]="!isOpen('LowerThird') && !hasTile('LowerThird')"
+    (click)="open('LowerThird')"
+    [class.open]="isOpen('LowerThird')"
+    [tile]="getTileByLocation('LowerThird')"
+  ></app-tile-container>
+  <app-tile-container
+    class="left-column"
+    [open]="isOpen('LeftColumn')"
+    [class.hidden]="!isOpen('LeftColumn') && !hasTile('LeftColumn')"
+    (click)="open('LeftColumn')"
+    [class.open]="isOpen('LeftColumn')"
+    [tile]="getTileByLocation('LeftColumn')"
+  ></app-tile-container>
+  <app-tile-container
+    class="middle-column"
+    [open]="isOpen('MiddleColumn')"
+    [class.hidden]="!isOpen('MiddleColumn') && !hasTile('MiddleColumn')"
+    (click)="open('MiddleColumn')"
+    [class.open]="isOpen('MiddleColumn')"
+    [tile]="getTileByLocation('MiddleColumn')"
+  ></app-tile-container>
+  <app-tile-container
+    class="right-column"
+    [open]="isOpen('RightColumn')"
+    [class.hidden]="!isOpen('RightColumn') && !hasTile('RightColumn')"
+    (click)="open('RightColumn')"
+    [class.open]="isOpen('RightColumn')"
+    [tile]="getTileByLocation('RightColumn')"
+  ></app-tile-container>
+  <app-tile-container
+    class="top-left"
+    [open]="isOpen('TopLeft')"
+    [class.hidden]="!isOpen('TopLeft') && !hasTile('TopLeft')"
+    (click)="open('TopLeft')"
+    [class.open]="isOpen('TopLeft')"
+    [tile]="getTileByLocation('TopLeft')"
+  ></app-tile-container>
+  <app-tile-container
+    class="top-middle"
+    [open]="isOpen('TopMiddle')"
+    [class.hidden]="!isOpen('TopMiddle') && !hasTile('TopMiddle')"
+    (click)="open('TopMiddle')"
+    [class.open]="isOpen('TopMiddle')"
+    [tile]="getTileByLocation('TopMiddle')"
+  ></app-tile-container>
+  <app-tile-container
+    class="top-right"
+    [open]="isOpen('TopRight')"
+    [class.hidden]="!isOpen('TopRight') && !hasTile('TopRight')"
+    (click)="open('TopRight')"
+    [class.open]="isOpen('TopRight')"
+    [tile]="getTileByLocation('TopRight')"
+  ></app-tile-container>
+  <app-tile-container
+    class="middle-left"
+    [open]="isOpen('MiddleLeft')"
+    [class.hidden]="!isOpen('MiddleLeft') && !hasTile('MiddleLeft')"
+    (click)="open('MiddleLeft')"
+    [class.open]="isOpen('MiddleLeft')"
+    [tile]="getTileByLocation('MiddleLeft')"
+  ></app-tile-container>
+  <app-tile-container
+    class="middle"
+    [open]="isOpen('Middle')"
+    [class.hidden]="!isOpen('Middle') && !hasTile('Middle')"
+    (click)="open('Middle')"
+    [class.open]="isOpen('Middle')"
+    [tile]="getTileByLocation('Middle')"
+  ></app-tile-container>
+  <app-tile-container
+    class="middle-right"
+    [open]="isOpen('MiddleRight')"
+    [class.hidden]="!isOpen('MiddleRight') && !hasTile('MiddleRight')"
+    (click)="open('MiddleRight')"
+    [class.open]="isOpen('MiddleRight')"
+    [tile]="getTileByLocation('MiddleRight')"
+  ></app-tile-container>
+  <app-tile-container
+    class="bottom-left"
+    [open]="isOpen('BottomLeft')"
+    [class.hidden]="!isOpen('BottomLeft') && !hasTile('BottomLeft')"
+    (click)="open('BottomLeft')"
+    [class.open]="isOpen('BottomLeft')"
+    [tile]="getTileByLocation('BottomLeft')"
+  ></app-tile-container>
+  <app-tile-container
+    class="bottom-middle"
+    [open]="isOpen('BottomMiddle')"
+    [class.hidden]="!isOpen('BottomMiddle') && !hasTile('BottomMiddle')"
+    (click)="open('BottomMiddle')"
+    [class.open]="isOpen('BottomMiddle')"
+    [tile]="getTileByLocation('BottomMiddle')"
+  ></app-tile-container>
+  <app-tile-container
+    class="bottom-right"
+    [open]="isOpen('BottomRight')"
+    [class.hidden]="!isOpen('BottomRight') && !hasTile('BottomRight')"
+    (click)="open('BottomRight')"
+    [class.open]="isOpen('BottomRight')"
+    [tile]="getTileByLocation('BottomRight')"
+  ></app-tile-container>
 </div>

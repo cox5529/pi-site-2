@@ -9,6 +9,7 @@ import { TileTypes } from 'src/app/models/enums/tile-types';
 })
 export class TileContainerComponent implements OnInit, OnChanges {
   @Input() tile: TileDto;
+  @Input() open = false;
   type: string;
 
   constructor() { }

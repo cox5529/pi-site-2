@@ -1,49 +1,24 @@
 <form [formGroup]="form" *ngIf="data">
   <mat-card>
-    <mat-card-title>Screen edit</mat-card-title>
     <mat-card-content>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" type="text" required />
-        <mat-error *ngIf="form.get('name').hasError('required')">
-          The name field is required.
-        </mat-error>
-      </mat-form-field>
-
-      <h2>
-        Tiles
-      </h2>
-
-      <mat-action-list>
-        <button
-          *ngFor="let tile of data.tiles"
-          [routerLink]="['/screen/tile/edit']"
-          [queryParams]="{ id: tile.id }"
-          mat-list-item
-        >
-          {{ tile.location }} - {{ tile.type }}
+      <div class="actions">
+        <button (click)="onSubmit()" mat-raised-button color="primary">
+          Save changes
         </button>
-      </mat-action-list>
+        <button (click)="onDelete()" mat-raised-button color="warn">
+          Reset dashboard
+        </button>
+        <a
+          [routerLink]="['/screen/details']"
+          [queryParams]="{ id: this.data.id }"
+          mat-flat-button
+          color="link"
+        >
+          Cancel
+        </a>
+      </div>
+      <app-screen-preview [tiles]="data.tiles" edit="true"></app-screen-preview>
     </mat-card-content>
-    <mat-card-actions>
-      <button (click)="onSubmit()" mat-raised-button color="primary">
-        Save changes
-      </button>
-      <button (click)="onDelete()" mat-raised-button color="warn">
-        Delete screen
-      </button>
-      <a
-        [routerLink]="['/screen/tile/create']"
-        [queryParams]="{ screenId: this.data.id }"
-        mat-raised-button
-        color="accent"
-      >
-        <mat-icon>add</mat-icon> Create tile
-      </a>
-      <a [routerLink]="['/screen']" mat-flat-button color="link">
-        Cancel
-      </a>
-    </mat-card-actions>
   </mat-card>
 </form>
 <mat-spinner *ngIf="!data"></mat-spinner>

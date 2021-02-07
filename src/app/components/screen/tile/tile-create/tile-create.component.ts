@@ -37,8 +37,12 @@ export class TileCreateComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe(async params => {
       if (!params || !params.screenId) {
-        await this.router.navigateByUrl('/screen');
+        await this.router.navigateByUrl('/screen/details');
         return;
+      }
+
+      if (params.location) {
+        this.form.get('location')?.setValue(params.location);
       }
 
       this.screenId = params.screenId;

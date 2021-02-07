@@ -34,8 +34,8 @@ export class NavigationComponent implements OnInit {
       role: Roles[Roles.Administrator]
     },
     {
-      path: '/screen',
-      text: 'Screens',
+      path: '/screen/details',
+      text: 'Dashboard',
       role: Roles[Roles.Screen]
     },
     {

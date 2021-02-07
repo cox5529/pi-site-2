@@ -43,7 +43,7 @@ export class TileEditComponent implements OnInit {
 
     this.route.queryParams.subscribe(async (params) => {
       if (!params || !params.id) {
-        await this.router.navigateByUrl('/screen');
+        await this.router.navigateByUrl('/screen/details');
         return;
       }
 
@@ -59,7 +59,7 @@ export class TileEditComponent implements OnInit {
         this.form.get('location').setValue(this.data.location);
         this.form.get('configurationJson').setValue(this.data.configurationJson);
       } else if (response.status === 404) {
-        await this.router.navigateByUrl('/screen');
+        await this.router.navigateByUrl('/screen/details');
       } else {
         this.snackbar.open(
           'Something went wrong. Please try again later.',

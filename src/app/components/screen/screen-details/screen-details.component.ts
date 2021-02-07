@@ -23,7 +23,27 @@ export class ScreenDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(async (params) => {
       if (!params || !params.id) {
-        await this.router.navigateByUrl('/screen');
+        const screens = await this.screenService.getList();
+        if (!screens.ok) {
+          this.snackbar.open('Something went wrong. Please try again later.', 'Dismiss');
+          return;
+        }
+
+        if (screens.count === 0) {
+          const screen = new ScreenDto();
+          screen.name = 'Dashboard';
+          screen.tiles = [];
+          const result = await this.screenService.create(screen);
+          if (result.ok) {
+            await this.router.navigate(['/screen/details'], { queryParams: { id: result.body.id }});
+            return;
+          }
+
+          this.snackbar.open('Something went wrong. Please try again later.', 'Dismiss');
+          return;
+        }
+
+        await this.router.navigate(['/screen/details'], { queryParams: { id: screens.data[0].id }});
         return;
       }
 
@@ -32,7 +52,7 @@ export class ScreenDetailsComponent implements OnInit {
       if (response.ok && response.body) {
         this.data = response.body;
       } else if (response.status === 404) {
-        await this.router.navigateByUrl('/screen');
+        await this.router.navigateByUrl('/screen/details');
       } else {
         this.snackbar.open(
           'Something went wrong. Please try again later.',

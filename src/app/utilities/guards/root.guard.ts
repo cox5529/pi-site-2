@@ -34,7 +34,7 @@ export class RootGuard implements CanActivate {
     if (roles.includes(Roles[Roles.Administrator])) {
       await this.router.navigateByUrl('/users');
     } else if (roles.includes(Roles[Roles.Screen])) {
-      await this.router.navigateByUrl('/screen');
+      await this.router.navigateByUrl('/screen/details');
     }
 
     return false;

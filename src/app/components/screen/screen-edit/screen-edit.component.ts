@@ -32,7 +32,7 @@ export class ScreenEditComponent implements OnInit {
 
     this.route.queryParams.subscribe(async (params) => {
       if (!params || !params.id) {
-        await this.router.navigateByUrl('/screen');
+        await this.router.navigateByUrl('/screen/details');
         return;
       }
 
@@ -43,7 +43,7 @@ export class ScreenEditComponent implements OnInit {
 
         this.form.get('name').setValue(this.data.name);
       } else if (response.status === 404) {
-        await this.router.navigateByUrl('/screen');
+        await this.router.navigateByUrl('/screen/details');
       } else {
         this.snackbar.open(
           'Something went wrong. Please try again later.',
@@ -75,7 +75,7 @@ export class ScreenEditComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
       data: {
-        prompt: `Are you sure you want to delete '${this.data.name}'?`,
+        prompt: `Are you sure you want to reset your dashboard?`,
         trueButton: 'Yes',
         falseButton: 'No',
       },
@@ -85,7 +85,7 @@ export class ScreenEditComponent implements OnInit {
     if (result) {
       const response = await this.screenService.delete(this.data.id);
       if (response.ok) {
-        this.router.navigate(['/screen']);
+        this.router.navigate(['/screen/details']);
       } else {
         this.snackbar.open(
           'Something went wrong when deleting the screen. Please try again later.',

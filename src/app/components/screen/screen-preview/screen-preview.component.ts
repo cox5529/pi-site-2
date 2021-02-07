@@ -18,11 +18,15 @@ import { environment } from 'src/environments/environment';
 export class ScreenPreviewComponent implements OnInit, OnDestroy {
   @Input() tiles: TileDto[] = [];
   @Input() isPreview = true;
-
-  id: string;
+  @Input() edit = false;
+  @Input() id: string;
   key: string;
 
   subscriptions: Subscription[] = [];
+
+  private blocked: {
+    [key: string]: boolean
+  } = {};
 
   constructor(
     private screenService: ScreenService,
@@ -34,7 +38,7 @@ export class ScreenPreviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(merge(this.route.queryParams, timer(0, environment.tileRefreshInterval * 1000)).subscribe(async (x) => {
-      if (typeof x !== 'number') {
+      if (typeof x !== 'number' && !this.id) {
         if (!x || !x.id) {
           await this.router.navigateByUrl('/auth/login');
           return;
@@ -55,14 +59,15 @@ export class ScreenPreviewComponent implements OnInit, OnDestroy {
         this.tiles = screen.tiles;
       } else if (response.status === 404) {
         if (this.key) {
-          this.snackbar.open('The requested screen does not exist.', 'Dismiss');
+          this.snackbar.open('The requested screen does not exist.', null, { duration: 15000 });
         } else {
-          await this.router.navigateByUrl('/screen');
+          await this.router.navigateByUrl('/screen/details');
         }
       } else {
         this.snackbar.open(
           'Something went wrong. Please try again later.',
-          'Dismiss'
+          null,
+          { duration: 15000 }
         );
       }
     }));
@@ -75,6 +80,41 @@ export class ScreenPreviewComponent implements OnInit, OnDestroy {
     }
 
     return result[0];
+  }
+
+  hasTile(location: string): boolean {
+    return this.tiles.filter(x => Locations[Locations[x.location]] === location).length > 0;
+  }
+
+  isOpen(location: string): boolean {
+    if (!this.edit) {
+      return false;
+    }
+
+    if (location.endsWith('Column') || location.endsWith('Third')) {
+      return false;
+    }
+
+    if (this.blocked[location] !== undefined) {
+      return this.blocked[location];
+    }
+
+    const result = !this.screenService.isBlocked(this.tiles, location);
+    this.blocked[location] = result;
+    return result;
+  }
+
+  async open(location: string): Promise<void> {
+    if (!this.edit) {
+      return;
+    }
+
+    const tile = this.getTileByLocation(location);
+    if (tile) {
+      await this.router.navigate(['/screen/tile/edit'], { queryParams: { id: tile.id }});
+    } else {
+      await this.router.navigate(['/screen/tile/create'], { queryParams: { location, screenId: this.id }});
+    }
   }
 
   ngOnDestroy(): void {

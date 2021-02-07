@@ -1,5 +1,5 @@
 <div class="site-container" [class.dark]="dark">
-  <nav mat-tab-nav-bar backgroundColor="primary" *ngIf="!fullscreen">
+  <mat-toolbar color="primary" *ngIf="!fullscreen">
     <button
       fxHide="true"
       fxShow.lt-md="true"
@@ -10,14 +10,13 @@
     >
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="site-title">Brandon's Website</span>
+    <span class="site-title">home.bscox.com</span>
     <a
-      mat-tab-link
+      mat-button
       *ngFor="let link of links"
       fxShow="true"
       fxHide.lt-md="true"
       [routerLink]="[link.path]"
-      [active]="route.startsWith(link.path)"
       [class.hidden]="!roles || !roles.includes(link.role)"
     >
       {{ link.text }}
@@ -39,7 +38,7 @@
     >
       {{ isAuthenticated ? "Logout" : "Login" }}
     </a>
-  </nav>
+  </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav mode="side" [opened]="isOpen">
       <mat-nav-list id="sidebar">

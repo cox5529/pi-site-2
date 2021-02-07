@@ -1,20 +1,26 @@
 <mat-card *ngIf="data">
-  <mat-card-title>{{data.name}}</mat-card-title>
   <mat-card-content>
-    <app-screen-preview [tiles]="data.tiles"></app-screen-preview>
+    <div class="actions">
+      <a
+        [routerLink]="['/screen/edit']"
+        [queryParams]="{ id: data.id }"
+        mat-raised-button
+        color="primary"
+      >
+        Edit dashboard
+      </a>
+      <a
+        [routerLink]="['/screen/preview']"
+        [queryParams]="{ id: data.id, dark: true }"
+        mat-raised-button
+        color="accent"
+        matTooltip="Press F11 to go fullscreen once in preview mode"
+        matTooltipPosition="below"
+      >
+        Preview
+      </a>
+    </div>
+    <app-screen-preview [tiles]="data.tiles" [id]="data.id"></app-screen-preview>
   </mat-card-content>
-  <mat-card-actions>
-    <a
-      [routerLink]="['/screen/edit']"
-      [queryParams]="{ id: data.id }"
-      mat-raised-button
-      color="primary"
-    >
-      Edit screen
-    </a>
-    <a [routerLink]="['/screen']" mat-flat-button color="link">
-      Back
-    </a>
-  </mat-card-actions>
 </mat-card>
 <mat-spinner *ngIf="!data"></mat-spinner>

@@ -15,6 +15,9 @@ export class CrudService<TDto extends BaseDto> {
   constructor(protected httpService: HttpService) {}
 
   async getList(request?: ListQuery): Promise<ListResponse<TDto>> {
+    if (!request) {
+      request = { page: 0 } as ListQuery;
+    }
     let params = new HttpParams()
       .append('page', `${request.page}`);
 

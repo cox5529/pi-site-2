@@ -4,3 +4,6 @@
   <app-weather-tile class="tile" *ngIf="type === 'Weather'" [tile]="tile"></app-weather-tile>
   <app-list-tile class="tile" *ngIf="type === 'List'" [tile]="tile"></app-list-tile>
 </div>
+<div class="create" *ngIf="open && !tile">
+  <mat-icon>add</mat-icon>
+</div>

@@ -33,9 +33,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInviteComponent } from './components/user/user-invite/user-invite.component';
-import { ScreenListComponent } from './components/screen/screen-list/screen-list.component';
 import { ScreenEditComponent } from './components/screen/screen-edit/screen-edit.component';
-import { ScreenCreateComponent } from './components/screen/screen-create/screen-create.component';
 import { ScreenDetailsComponent } from './components/screen/screen-details/screen-details.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { ScreenPreviewComponent } from './components/screen/screen-preview/screen-preview.component';
@@ -64,6 +62,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ListTileComponent } from './components/screen/tile/list-tile/list-tile.component';
 import { ListTileSettingsComponent } from './components/screen/tile/list-tile/settings/list-tile-settings.component';
 import { AreaComponent } from './components/area/area.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -76,9 +76,7 @@ import { AreaComponent } from './components/area/area.component';
     UserDetailsComponent,
     UserEditComponent,
     UserInviteComponent,
-    ScreenListComponent,
     ScreenEditComponent,
-    ScreenCreateComponent,
     ScreenDetailsComponent,
     ConfirmationDialogComponent,
     ScreenPreviewComponent,
@@ -134,7 +132,9 @@ import { AreaComponent } from './components/area/area.component';
     MatSelectModule,
     MatDialogModule,
     MatSlideToggleModule,
-    DragDropModule
+    DragDropModule,
+    MatToolbarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
